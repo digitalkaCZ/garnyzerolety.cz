@@ -1,0 +1,503 @@
+
+li#menu-posts-eopa_global_options .wp-menu-image img {
+padding: 4px;
+}
+
+
+.datatable
+{
+    text-align: left;
+    width: 100%;
+}
+/*.datath1*/
+/*{*/
+    /*width: 40%;*/
+/*}*/
+/*.datath2*/
+/*{*/
+    /*width: 25%;*/
+/*}*/
+/*.datath3*/
+/*{*/
+    /*width: 20%;*/
+/*}*/
+/*.datath4*/
+/*{*/
+    /*width: 15%;*/
+/*}*/
+.inputs
+{
+    width: 100%;
+}
+.addButton
+{
+    width: 100%;
+    text-align: right;
+}
+.addFormFields
+{
+    width: 95%;
+    background-color: #eee;
+    padding: 10px;
+    margin: 10px;
+}
+.btnDel
+{
+    text-align: right;
+    clear: both;
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+    color: #fff !important;
+}
+.topFields
+{
+    width: 100%;
+}
+.topFields
+{
+    margin-top: 10px;
+}
+.nodata
+{
+    text-align: center;
+    width: 100%;
+}
+.bottom_fields
+{
+    width: 100%;
+    margin-top: 10px;
+}
+.datath1 span
+{
+    font-size: 10px;
+    color: #0073aa;
+}
+.imgdis img
+{
+    cursor: pointer;
+}
+
+.global_form
+{
+    width: 97%;
+    padding: 10px;
+    float: left;
+    background-color: #fff;
+}
+.addButtonGlobal {
+    text-align: right;
+    width: 98%;
+}
+/*.datathpro1 { width: 20%;}*/
+/*.datathpro2 { width: 20%;}*/
+/*.datathpro3 { width: 20%;}*/
+/*.datathpro4 { width: 10%;}*/
+/*.datathpro5 { width: 10%;}*/
+/*.datathpro6 { width: 10%;}*/
+/*.datathpro7 { width: 10%;}*/
+
+
+#info-nav{
+    margin: 0;
+    padding: 0;
+    width: 98%;
+    list-style: none;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0;
+    padding-left: 10px;
+}
+#info-nav li{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #e4e4e4;
+    border-color: #ccc #ccc -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    color: #555;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    margin: -4px 4px -1px 0;
+    padding: 4px 14px 6px;
+    text-decoration: none;
+}
+
+#info-nav li a
+{
+    color:#555;
+    text-decoration:none;
+    text-align:center;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 6px 10px;
+}
+#info-nav li.nocurrent{ 
+    background: none repeat scroll 0 0 #e4e4e4 !important;
+    border-bottom: 1px solid #f1f1f1;
+    color: #555;
+}
+#info-nav li.current{ 
+    background: none repeat scroll 0 0 #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    color: #000;
+}
+#info-nav li.current:hover{ 
+    background: none repeat scroll 0 0 #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    color: #000;
+}
+#info-nav li:hover{ 
+    background: none repeat scroll 0 0 #ffffff;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+}
+.globaldatatable
+{
+    width: 100%;
+    text-align: left;
+}
+.woocommerce_order_items_wrapper table.woocommerce_order_items table.display_meta tr th, .woocommerce_order_items_wrapper table.woocommerce_order_items table.meta tr th {
+    width: auto !important;
+}
+.alert
+{
+    width: auto;
+    padding: 10px !important;
+    margin: 10px !important;
+}
+.variation dt, .variation dd{ float:left; margin-top:5px;}
+
+.eocheck {
+    width: auto;
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+
+
+.extendons-support h3{ text-align: center; font-weight: bold; padding: 10px;}
+
+/*Extendons Support css */
+.extendons-support {
+  position: relative;
+  margin: 25px 40px 0 20px;
+  font-size: 15px;
+}
+.extendons-support h1 {
+  padding: 0;
+  text-align: center;
+  color: #32373c;
+  line-height: 1.2em;
+  font-size: 2.0em;
+  font-weight: 400;
+}
+.extendons-support .about-text {
+  margin: 1em 0px 1em 200px;
+  min-height: 60px;
+  color: #32373c;
+  line-height: 32px;
+  font-size: 18px;
+}
+.extendons-logo img {
+  width: 150px;
+}
+.extendons-support .extendons-logo {
+  position: absolute;
+  width: 150px;
+  background: white; 
+  border: none;
+  top: 0;
+  text-align: center;
+  margin: 20px 0 0;
+  display: inline-block;
+  text-rendering: optimizeLegibility;
+  -webkit-box-shadow: 0 1px 3px rgba(26, 58, 116, 0.77);
+  padding: 12px;
+}
+.extendons-support-form {
+  padding: 15px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid #e5e5e5;
+  margin-top: 15px;
+}
+.extendons-support-active .widefat{
+  background: rgba(255, 255, 255, 0.52);
+}
+.extendons-support-form::after {
+  background:url(../images/logo-extendon.png) top center;
+  content: "";
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+.extendons-support-form input[type=text],
+.extendons-support-form input[type=email],
+.extendons-support-form textarea {
+  padding: 10px 15px;
+  width: 45%;
+  margin-bottom: 15px;
+  margin-right: 20px;
+}
+.extendons-support-form textarea {
+  width: 93%;
+}
+.extendons-support-form input[type=number] {
+  width: 45%;
+  margin-bottom: 20px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 5px 16px;
+}
+.extendons-support-form select  {
+  width: 45%;
+  color: #7E7D7D;
+  height: 40px;
+  padding: 5px 16px;
+}
+form#extendon-form-support {
+  width: 90%;
+  margin: 30px auto;
+}
+#extendon-submit{
+  box-shadow: none !important;
+  cursor: pointer;
+  border: none !important;
+  text-decoration: none !important;
+  background: #3498db;
+  border-radius: 4px;
+  color: #fff;
+  line-height: 40px;
+  padding: 0px 20px;
+  width: 93%; 
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  outline: none !important;
+}
+input#extendon-submit:hover {
+  background: rgba(52, 152, 219, 0.78);
+}
+.extendon-socials {
+  text-align: center;
+}
+ul.extend-social-left li {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 10px;
+}
+.extendons-support-form h4 {
+  font-size: 14px;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 10px;
+  margin: 0px -5px;
+}
+.extendons-support-form h5 {
+  text-align: center;
+  color: #397C17;
+  display: none;
+}
+#extendon-form-support .extendon-field label {
+  display: inline-flex;
+  width: 130px;
+  margin-right: 0px;
+  padding-top: 8px;
+}
+form#extendon-form-support ul.parsley-errors-list {
+  text-align: center !important;
+  display: none !important;
+}
+li#menu-posts-product_review_post .wp-menu-image img {
+  padding: 4px;
+}
+.red{
+  transition: all .2s ease-in-out;
+  width: 6% !important;
+}
+.redd{
+  transition: all .2s ease-in-out;
+}
+.green {
+  transition: all .2s ease-in-out;
+  width: 86% !important;
+}
+.reddisnon {
+  transition: all .2s ease-in-out;
+  display: none;
+}
+
+
+/* New CSS */
+
+.addGlobalFormFields {
+    width: 95%;
+    background-color: #eee;
+    padding: 10px;
+    margin: 10px;
+    float: left;
+}
+
+.eopa_global_left { float: left; width: 100%; margin-top: 10px; }
+
+.global_inputs{
+    width: auto;
+    padding: 7px;
+}
+
+.addGlobalFormFields label{ width: 200px; font-weight: bold; float: left; margin-top: 7px; }
+
+.eopa_global_top { width: 100%; float: left; margin-bottom: 20px; }
+
+.gbtnDel {
+    text-align: right;
+    clear: both;
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+    color: #fff !important;
+    float: left;
+}
+
+.text_hidden { display: none; }
+
+
+.rulename{ width: 100%; float: left; margin-top: 10px; margin-bottom: 10px; }
+
+
+.rulename label{ width: 100%; float: left; font-weight: bold; }
+.rulename label i{ width: 100%; float: left; font-weight: normal; font-size: 12px; margin-top: 5px; }
+
+.rule_inputs { width: 500px; float: left; margin-top: 7px; padding: 10px; }
+
+.rule_seect {width: 250px; float: left; margin-top: 7px; padding: 10px;}
+
+.se2{ width: 700px; float: left; margin-top: 10px; padding: 10px; }
+
+.appproducts{ width: 100%; float: left; margin-top: 15px; margin-bottom: 15px; display: none; }
+
+.parent_cat { margin-top: 10px; }
+
+.child_cat { margin-left: 20px; margin-top: 10px; }
+
+
+.widd_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.widd_wrapper .showf{
+  width: 20%;
+}
+
+.widd_wrapper .showf input,
+.widd_wrapper .showf select {
+  width: 100%;
+}
+
+
+#settings_form .form_field{
+  padding: 10px 15px;
+}
+
+#settings_form .form_field > input[type=text]{ 
+  width: 500px;
+}
+
+#settings_form .form_field > .lat-field,
+#settings_form .form_field > .long-field {
+  width: 250px !important;
+}
+
+#settings_form .form_field > .zoom-field {
+  width: 120px !important;
+}
+
+#import_export_form {
+  display: flex;
+}
+
+#import_export_form .form-field {
+  margin-right: 15px;
+}
+
+.notice-hidden {
+  display: none;
+}
+
+
+
+/* make row width 100% */
+.row100 {
+    /*display: block;*/
+    /*width: 100%;*/
+}
+/*.width3{*/
+    /*width: 3%;*/
+/*}*/
+/*.width5{*/
+    /*width: 5%;*/
+/*}.width7{*/
+    /*width: 7%;*/
+/*}*/
+/*.width8{*/
+    /*width: 8%;*/
+/*}.width9{*/
+    /*width: 9%;*/
+/*}*/
+/*.widt10{*/
+    /*width: 10%;*/
+
+/*}.widt13{*/
+    /*width: 14%;*/
+
+/*}*/
+/*.width15{*/
+    /*width: 15%;*/
+/*}*/
+/*.width16{*/
+    /*width: 16%;*/
+/*}*/
+/*.width18{*/
+    /*width: 18%;*/
+/*}*/
+/*.width19{*/
+    /*width: 19%;*/
+/*}*/
+/*.width20{*/
+    /*width: 20%;*/
+/*}*/
+/*.width23{*/
+    /*width: 23%;*/
+/*}*/
+/*.width25{*/
+    /*width: 25%;*/
+/*}.width26{*/
+    /*width: 26%;*/
+/*}*/
+/*.width30{*/
+    /*width: 30%;*/
+/*}*/
+/*.width31{*/
+    /*width: 31%;*/
+/*}.width33{*/
+    /*width: 33%;*/
+/*}*/
+/*.width38{*/
+    /*width: 38%;*/
+/*}*/
+/*.width82{*/
+    /*width: 82%;*/
+/*}*/
+/*.width90px*/
+/*{*/
+    /*width: 90px;*/
+/*}*/

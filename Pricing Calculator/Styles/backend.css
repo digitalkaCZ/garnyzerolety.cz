@@ -1,0 +1,92 @@
+#price_calculator_option .container ul li{
+    width: 50%;
+}
+#price_calculator_option .container ul li {
+    width: 50%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+#price_calculator_option .container ul.nav.nav-tabs li.active a{
+    background: #2b8bb9;
+    color: white;
+    margin: 0px;
+    border-radius: 0px;
+    border: 0px;
+}
+#price_calculator_option .container ul.nav.nav-tabs li.active a:focus{
+    outline: 0px !important;
+    outline: none !important;
+}
+#price_calculator_option .container ul.nav.nav-tabs {
+	border-radius: 0px;
+	border: 0px;
+}
+#woocommerce-product-data ul.product_data_tabs li.price_calculatortabs_options a,
+#woocommerce-product-data ul.product_data_tabs li.price_calculatorminmax_options a{
+    padding: 12px 0px 12px 24px;
+    background-image: url(../images/extendons-24x24.png);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 8px 15px;
+}
+#woocommerce-product-data ul.product_data_tabs li.price_calculatortabs_options a:before,
+#woocommerce-product-data ul.product_data_tabs li.price_calculatorminmax_options a:before {
+    display: none;
+}
+table.table.table-striped.ext_pricing_table_class tbody tr td div.form-group input {
+    width: 100%;
+}
+table.table.table-striped.ext_pricing_table_class tbody tr td:nth-child(2),
+table.table.table-striped.ext_pricing_table_class tbody tr td:nth-child(3),
+table.table.table-striped.ext_pricing_table_class tbody tr td:nth-child(4) {
+    vertical-align: middle;
+}
+table.table.table-striped.ext_pricing_table_class tbody tr td:nth-child(4) div.form-group {
+    margin-bottom: 0px !important;
+}
+table.table.table-striped.ext_pricing_table_class tbody tr td:nth-child(1) div.form-group {
+    width: 100%;
+}
+table.table.table-striped.ext_pricing_table_class {
+    border-top: 1px solid #e2e2e2;
+    margin-top: 15px;
+}
+.ext_pricing_table_class thead tr td {
+    font-weight: bold;
+}
+#pc_field_deleted{
+    display: none;
+    margin: 15px;
+}
+#price_calculator_option .container ul.nav.nav-tabs li a i {
+    vertical-align: middle;;
+}   
+thead.ext_pricing_table_head tr td {
+    background: #ece9e9;
+}
+thead.ext_pricing_table_head tr td p {
+    padding: 4px 0px;
+    margin: 0px;
+    font-size: 13px;
+    text-align: center;
+    color: #4a4a4a;
+}
+button#ext_add_new_rule_btn {
+    padding: 10px 0px;
+    background: #2b8bb9;
+    border-color: #2b8bb9;
+}
+button#ext_add_new_rule_btn:hover {
+    background: white;
+    color: #2b8bb9;
+}
+p.rest-pc-product button {
+    background: #2b8bb9 !important;
+    border-color: #2b8bb9 !important;
+    color: white !important;
+}
+p.rest-pc-product button:hover {
+    background: white !important;
+    color: #2b8bb9 !important;
+}

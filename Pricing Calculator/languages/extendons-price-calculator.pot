@@ -1,0 +1,715 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Extendons Woocommerce Measurement Price Calculator\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 09:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.0; wp-4.9.9"
+
+#: extendons-price-calculator-front.php:1069
+msgid " Box"
+msgstr ""
+
+#: extendons-price-calculator-front.php:68
+#: extendons-price-calculator-front.php:75
+msgid " left in stock"
+msgstr ""
+
+#: extendons-price-calculator-front.php:831
+#: Include/extendons-price-calculator-variable.php:310
+msgid " quantity!"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:120
+#: templates/measurement/volumeadv.php:114
+#: templates/measurement/length-fields.php:52
+#: templates/measurement/area-fieldlw.php:113
+#: templates/measurement/volume-fields.php:55
+#: templates/measurement/area-fields.php:52
+#: templates/measurement/weight-fields.php:50
+#: templates/measurement/wall.php:114
+msgid " Reset to Normal"
+msgstr ""
+
+#: extendons-price-calculator-main.php:27
+msgid ""
+"<div class=\"error notice\"><p>This plugin requires <a href=\"http:"
+"//wordpress.org/extend/plugins/woocommerce/\">WooCommerce</a> plugin to be "
+"installed and active!</p></div>"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:44 templates/measurement/wall.php:44
+msgid "acs"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:18
+msgid "Action"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:69
+msgid "Add New Row"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:120
+msgid "Area"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:124
+msgid "Area (LxW)"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:28
+msgid "Area Covered by box"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:54
+#: templates/measurement/area-fieldlw.php:24
+#: templates/measurement/area-fields.php:24 templates/measurement/wall.php:24
+msgid "Area input field label to display on the frontend"
+msgstr ""
+
+#: templates/measurement/area-fields.php:22
+msgid "Area Label"
+msgstr ""
+
+#: extendons-price-calculator-front.php:298
+#: extendons-price-calculator-front.php:323
+#: Include/extendons-price-calculator-variable.php:174
+#: Include/extendons-price-calculator-variable.php:199
+msgid "Area Length"
+msgstr ""
+
+#: templates/measurement/area-fields.php:13
+msgid "Area Pricing Label"
+msgstr ""
+
+#: templates/measurement/area-fields.php:31
+msgid "Area Unit"
+msgstr ""
+
+#: extendons-price-calculator-front.php:303
+#: extendons-price-calculator-front.php:328
+#: Include/extendons-price-calculator-variable.php:179
+#: Include/extendons-price-calculator-variable.php:204
+msgid "Area Width"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:123
+msgid "Box Tiles"
+msgstr ""
+
+#: extendons-price-calculator-front.php:883
+msgid "Calculate & Buy"
+msgstr ""
+
+#: templates/measurement/area-fields.php:5
+msgid ""
+"Check this box to display producextendons-price-calculatort pricing per unit "
+"on the frontend. Also Enable calculated price Fields"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:5
+#: templates/measurement/volumeadv.php:6
+#: templates/measurement/length-fields.php:5
+#: templates/measurement/area-fieldlw.php:5
+#: templates/measurement/volume-fields.php:5
+#: templates/measurement/weight-fields.php:5 templates/measurement/wall.php:5
+msgid ""
+"Check this box to display product pricing per unit on the frontend. Also "
+"Enable calculated price Fields"
+msgstr ""
+
+#: templates/measurement/length-fields.php:37
+#: templates/measurement/area-fieldlw.php:69
+#: templates/measurement/area-fieldlw.php:99 templates/measurement/wall.php:69
+#: templates/measurement/wall.php:99
+msgid "cm"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:38
+msgid "cu m"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:45
+msgid "cu. ft."
+msgstr ""
+
+#: templates/measurement/volume-fields.php:44
+msgid "cu. in."
+msgstr ""
+
+#: templates/measurement/volumeadv.php:37
+#: templates/measurement/volume-fields.php:46
+msgid "cu. yd."
+msgstr ""
+
+#: templates/measurement/volume-fields.php:39
+msgid "cup"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:54
+msgid "Delete"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:38
+msgid "End Range"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:29
+msgid "Enter a total area Covered by box in sq foot"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:44
+msgid "Enter Maximum Quantity"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:34
+msgid "Enter Minimum Quantity"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:15
+msgid "Enter per square foot price of a tile box"
+msgstr ""
+
+#. Author of the plugin
+msgid "Extendons"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:49
+#: extendons-price-calculator-admin.php:63
+msgid "Extendons Measurement"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:96
+msgid "Extendons Measurement Settings"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:102
+msgid "Extendons Pricing Table"
+msgstr ""
+
+#. Name of the plugin
+msgid "Extendons Woocommerce Measurement Price Calculator"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:43
+msgid "fl. oz."
+msgstr ""
+
+#. Description of the plugin
+msgid "For the purpose of calculating price based on customer measurements."
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:89
+#: templates/measurement/area-box-fields.php:112
+#: templates/measurement/volumeadv.php:60
+#: templates/measurement/volumeadv.php:83
+#: templates/measurement/length-fields.php:41
+#: templates/measurement/area-fieldlw.php:73
+#: templates/measurement/area-fieldlw.php:103 templates/measurement/wall.php:73
+#: templates/measurement/wall.php:103
+msgid "ft"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:36
+msgid "g"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:42
+msgid "gal"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:39 templates/measurement/wall.php:39
+msgid "ha"
+msgstr ""
+
+#: templates/measurement/volumeadv.php:92
+msgid "Height Label"
+msgstr ""
+
+#: templates/measurement/volumeadv.php:101
+msgid "Height Units"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://extendons.com"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://extendons.com/"
+msgstr ""
+
+#: templates/min-max-values.php:7
+msgid "If your quantity not exist in ranges then the minimum price will apply"
+msgstr ""
+
+#: templates/measurement/volumeadv.php:106
+#: templates/measurement/length-fields.php:40
+#: templates/measurement/area-fieldlw.php:72
+#: templates/measurement/area-fieldlw.php:102 templates/measurement/wall.php:72
+#: templates/measurement/wall.php:102
+msgid "in"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:37
+msgid "kg"
+msgstr ""
+
+#: templates/measurement/length-fields.php:39
+#: templates/measurement/area-fieldlw.php:71
+#: templates/measurement/area-fieldlw.php:101 templates/measurement/wall.php:71
+#: templates/measurement/wall.php:101
+msgid "km"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:37
+msgid "l"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:52
+#: templates/measurement/volumeadv.php:23
+#: templates/measurement/area-fieldlw.php:22 templates/measurement/wall.php:22
+msgid "Label"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:45
+#: templates/measurement/volumeadv.php:16
+#: templates/measurement/length-fields.php:15
+#: templates/measurement/area-fieldlw.php:15
+#: templates/measurement/volume-fields.php:15
+#: templates/measurement/area-fields.php:15
+#: templates/measurement/weight-fields.php:15 templates/measurement/wall.php:15
+msgid "Label to display next to the product price (defaults to pricing unit)"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:40
+msgid "lb"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:121
+msgid "Length"
+msgstr ""
+
+#: templates/measurement/length-fields.php:24
+msgid "Length input field label to display on the frontend"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:75
+#: templates/measurement/volumeadv.php:46
+#: templates/measurement/length-fields.php:22
+#: templates/measurement/area-fieldlw.php:54 templates/measurement/wall.php:54
+msgid "Length Label"
+msgstr ""
+
+#: templates/measurement/length-fields.php:13
+msgid "Length Pricing Label"
+msgstr ""
+
+#: templates/measurement/length-fields.php:31
+msgid "Length Unit"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:84
+#: templates/measurement/volumeadv.php:55
+#: templates/measurement/area-fieldlw.php:63 templates/measurement/wall.php:63
+msgid "Length Units"
+msgstr ""
+
+#: templates/measurement/length-fields.php:38
+#: templates/measurement/area-fieldlw.php:70
+#: templates/measurement/area-fieldlw.php:100 templates/measurement/wall.php:70
+#: templates/measurement/wall.php:100
+msgid "m"
+msgstr ""
+
+#: templates/min-max-values.php:25
+msgid "Maximum Quantity"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:46
+msgid "Maximum Value"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:45
+msgid "Maximum Value Allowed to by for this variation"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:9
+msgid "Measurement Range"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:114
+msgid "Mesurements"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:38
+msgid "mg"
+msgstr ""
+
+#: templates/measurement/length-fields.php:43
+#: templates/measurement/area-fieldlw.php:75
+#: templates/measurement/area-fieldlw.php:105 templates/measurement/wall.php:75
+#: templates/measurement/wall.php:105
+msgid "mi"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:69
+msgid "Min/Max Quantity & Value"
+msgstr ""
+
+#: templates/min-max-values.php:5
+msgid "Minimum Price"
+msgstr ""
+
+#: templates/min-max-values.php:16
+msgid "Minimum Quantity"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:36
+msgid "Minimum Value"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable-callback.php:35
+msgid "Minimum Value Allowed to by for this variation"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:36
+msgid "ml"
+msgstr ""
+
+#: templates/measurement/length-fields.php:36
+#: templates/measurement/area-fieldlw.php:68
+#: templates/measurement/area-fieldlw.php:98 templates/measurement/wall.php:68
+#: templates/measurement/wall.php:98
+msgid "mm"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:118
+#: templates/measurement/area-box-fields.php:65
+#: templates/measurement/area-box-fields.php:88
+#: templates/measurement/area-box-fields.php:111
+#: templates/measurement/volumeadv.php:36
+#: templates/measurement/volumeadv.php:59
+#: templates/measurement/volumeadv.php:82
+#: templates/measurement/volumeadv.php:105
+#: templates/measurement/length-fields.php:35
+#: templates/measurement/area-fieldlw.php:35
+#: templates/measurement/area-fieldlw.php:67
+#: templates/measurement/area-fieldlw.php:97
+#: templates/measurement/volume-fields.php:35
+#: templates/measurement/area-fields.php:35
+#: templates/measurement/weight-fields.php:35 templates/measurement/wall.php:35
+#: templates/measurement/wall.php:67 templates/measurement/wall.php:97
+msgid "None"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:2
+msgid "One of your saved form field was deleted."
+msgstr ""
+
+#: templates/measurement/weight-fields.php:39
+msgid "oz"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:14
+msgid "Per Square Foot Price"
+msgstr ""
+
+#: extendons-price-calculator-front.php:851
+#: Include/extendons-price-calculator-variable.php:330
+msgid "Price Calculator Product Successfully added in your cart"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:12
+msgid "Price Per Unit"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:43
+#: templates/measurement/volumeadv.php:14
+#: templates/measurement/area-fieldlw.php:13 templates/measurement/wall.php:13
+msgid "Pricing Label"
+msgstr ""
+
+#: extendons-price-calculator-front.php:480
+msgid "Pricing Range"
+msgstr ""
+
+#: extendons-price-calculator-front.php:443
+msgid "Pricing Table"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:61
+#: templates/measurement/volumeadv.php:32
+#: templates/measurement/area-fieldlw.php:31 templates/measurement/wall.php:31
+msgid "Pricing Unit"
+msgstr ""
+
+#: templates/singletemplates/boxtiles.php:41
+#: templates/singletemplates/weight.php:21
+#: templates/singletemplates/volumeadv.php:53
+#: templates/singletemplates/length.php:21
+#: templates/singletemplates/area.php:21 templates/singletemplates/wall.php:41
+#: templates/singletemplates/volume.php:21
+#: templates/singletemplates/area-lw.php:41
+#: templates/variable/pcv_triple.php:53 templates/variable/pcv_double.php:41
+msgid "Product Price"
+msgstr ""
+
+#: extendons-price-calculator-front.php:474
+msgid "Product Pricing Table"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:40
+msgid "pt"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:41
+msgid "qt"
+msgstr ""
+
+#: extendons-price-calculator-front.php:483
+#: templates/pricingtable/pricing-table.php:43
+msgid "Regular Price"
+msgstr ""
+
+#: extendons-price-calculator-front.php:1003
+msgid "Required Box"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:100
+#: templates/measurement/area-box-fields.php:109
+#: templates/measurement/volumeadv.php:71
+#: templates/measurement/volumeadv.php:80
+#: templates/measurement/volumeadv.php:94
+#: templates/measurement/volumeadv.php:103
+#: templates/measurement/area-fieldlw.php:86
+#: templates/measurement/area-fieldlw.php:95 templates/measurement/wall.php:86
+#: templates/measurement/wall.php:95
+msgid "Room wall Width input field label to display on the frontend"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:125
+msgid "Room Walls"
+msgstr ""
+
+#: extendons-price-calculator-front.php:486
+#: templates/pricingtable/pricing-table.php:48
+msgid "Sale Price"
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:15
+msgid "Sale Price Per Unit"
+msgstr ""
+
+#: extendons-price-calculator-front.php:939
+msgid "Sale!"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:116
+msgid ""
+"Select the product measurement to calculate quantity by or define pricing "
+"within"
+msgstr ""
+
+#: templates/min-max-values.php:27
+msgid "Set Maximum Quanity if you need for this product"
+msgstr ""
+
+#: templates/min-max-values.php:18
+msgid "Set Minimum Quanity if you need for this product"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:4
+#: templates/measurement/volumeadv.php:5
+#: templates/measurement/area-fieldlw.php:4
+#: templates/measurement/volume-fields.php:4
+#: templates/measurement/area-fields.php:4
+#: templates/measurement/weight-fields.php:4 templates/measurement/wall.php:4
+msgid "Show Product Price Per Unit"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:37
+#: templates/measurement/area-fields.php:37 templates/measurement/wall.php:37
+msgid "sq cm"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:40
+#: templates/measurement/area-fields.php:39 templates/measurement/wall.php:40
+msgid "sq km"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:38
+#: templates/measurement/area-fields.php:38 templates/measurement/wall.php:38
+msgid "sq m"
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:36
+#: templates/measurement/area-fields.php:36 templates/measurement/wall.php:36
+msgid "sq mm"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:66
+#: templates/measurement/area-fieldlw.php:42
+#: templates/measurement/area-fields.php:41 templates/measurement/wall.php:42
+msgid "sq. ft."
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:41
+#: templates/measurement/area-fields.php:40 templates/measurement/wall.php:41
+msgid "sq. in."
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:45
+#: templates/measurement/area-fields.php:43 templates/measurement/wall.php:45
+msgid "sq. mi."
+msgstr ""
+
+#: templates/measurement/area-fieldlw.php:43
+#: templates/measurement/area-fields.php:42 templates/measurement/wall.php:43
+msgid "sq. yd."
+msgstr ""
+
+#: templates/pricingtable/pricing-table.php:37
+msgid "Start Range"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:41
+msgid "t"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:86
+#: templates/measurement/volumeadv.php:57
+#: templates/measurement/area-fieldlw.php:65 templates/measurement/wall.php:65
+msgid "The frontend wall length input field unit"
+msgstr ""
+
+#: extendons-price-calculator-front.php:309
+#: extendons-price-calculator-front.php:334
+#: extendons-price-calculator-front.php:365
+#: Include/extendons-price-calculator-variable.php:185
+#: Include/extendons-price-calculator-variable.php:241
+#: templates/singletemplates/boxtiles.php:31
+#: templates/singletemplates/volumeadv.php:43
+#: templates/singletemplates/wall.php:31 templates/variable/pcv_triple.php:43
+#: templates/variable/pcv_double.php:31
+msgid "Total Area"
+msgstr ""
+
+#: extendons-price-calculator-front.php:285
+msgid "Total Box"
+msgstr ""
+
+#: templates/variable/pcv_single.php:19
+msgid "Total Price"
+msgstr ""
+
+#: Include/extendons-price-calculator-variable.php:210
+msgid "Total Wall Area"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:63
+#: templates/measurement/volumeadv.php:34
+#: templates/measurement/length-fields.php:33
+#: templates/measurement/area-fieldlw.php:33
+#: templates/measurement/volume-fields.php:33
+#: templates/measurement/area-fields.php:33
+#: templates/measurement/weight-fields.php:33 templates/measurement/wall.php:33
+msgid "Unit to define pricing in"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:122
+msgid "Volume"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:126
+msgid "Volume (LxWxH)"
+msgstr ""
+
+#: extendons-price-calculator-front.php:359
+#: Include/extendons-price-calculator-variable.php:235
+msgid "Volume height"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:24
+msgid "Volume input field label to display on the frontend"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:22
+msgid "Volume Label"
+msgstr ""
+
+#: extendons-price-calculator-front.php:349
+#: Include/extendons-price-calculator-variable.php:225
+msgid "Volume Length"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:13
+msgid "Volume Pricing Label"
+msgstr ""
+
+#: templates/measurement/volume-fields.php:31
+msgid "Volume Unit"
+msgstr ""
+
+#: extendons-price-calculator-front.php:354
+#: Include/extendons-price-calculator-variable.php:230
+msgid "Volume Width"
+msgstr ""
+
+#: templates/measurement/volumeadv.php:25
+msgid "Wall input field label to display on the frontend"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:77
+#: templates/measurement/volumeadv.php:48
+#: templates/measurement/area-fieldlw.php:56 templates/measurement/wall.php:56
+msgid "Wall length input field label to display on the frontend"
+msgstr ""
+
+#: extendons-price-calculator-admin.php:119
+msgid "Weight"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:24
+msgid "Weight input field label to display on the frontend"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:22
+msgid "Weight Label"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:13
+msgid "Weight Pricing Label"
+msgstr ""
+
+#: templates/measurement/weight-fields.php:31
+msgid "Weight Unit"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:98
+#: templates/measurement/volumeadv.php:69
+#: templates/measurement/area-fieldlw.php:84 templates/measurement/wall.php:84
+msgid "Width Label"
+msgstr ""
+
+#: templates/measurement/area-box-fields.php:107
+#: templates/measurement/volumeadv.php:78
+#: templates/measurement/area-fieldlw.php:93 templates/measurement/wall.php:93
+msgid "Width Units"
+msgstr ""
+
+#: templates/measurement/length-fields.php:42
+#: templates/measurement/area-fieldlw.php:74
+#: templates/measurement/area-fieldlw.php:104 templates/measurement/wall.php:74
+#: templates/measurement/wall.php:104
+msgid "yd"
+msgstr ""

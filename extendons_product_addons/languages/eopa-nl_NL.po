@@ -1,0 +1,486 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Extendons: WooCommerce Product Add-ons - Custom Product "
+"Options Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-16 06:56+0000\n"
+"PO-Revision-Date: 2017-10-18 11:46+0000\n"
+"Last-Translator: admin <usman.mehmood@unitedsol.net>\n"
+"Language-Team: Dutch\n"
+"Language: nl-NL\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: extendons-product-addons.php:93
+msgid "Email:"
+msgstr "E-mail:"
+
+#: extendons-product-addons.php:97
+msgid "Phone:"
+msgstr "Telefoon:"
+
+#: extendons-product-addons.php:101
+msgid "Subject:"
+msgstr "Onderwerpen:"
+
+#: extendons-product-addons.php:105
+msgid "Message:"
+msgstr "Bericht:"
+
+#: admin/class-eo-product-addons-admin.php:61
+#: admin/class-eo-product-addons-admin.php:61 admin/view/global_form.php:32
+msgid "Product Global Addons"
+msgstr "Product Global Addons"
+
+#: admin/class-eo-product-addons-admin.php:63
+#: admin/class-eo-product-addons-admin.php:63
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: admin/class-eo-product-addons-admin.php:432
+#: admin/class-eo-product-addons-admin.php:1117 admin/view/global_form.php:60
+#: admin/view/product_level_form.php:32
+msgid "Delete Option"
+msgstr "Optie verwijderen"
+
+#: admin/class-eo-product-addons-admin.php:437
+#: admin/class-eo-product-addons-admin.php:582
+#: admin/class-eo-product-addons-admin.php:611
+#: admin/class-eo-product-addons-admin.php:639
+#: admin/class-eo-product-addons-admin.php:671
+#: admin/class-eo-product-addons-admin.php:1122
+#: admin/class-eo-product-addons-admin.php:1269
+#: admin/class-eo-product-addons-admin.php:1298
+#: admin/class-eo-product-addons-admin.php:1326
+#: admin/class-eo-product-addons-admin.php:1357 admin/view/global_form.php:65
+#: admin/view/global_form.php:216 admin/view/global_form.php:267
+#: admin/view/global_form.php:316 admin/view/global_form.php:395
+#: admin/view/product_level_form.php:37 admin/view/product_level_form.php:155
+#: admin/view/product_level_form.php:206 admin/view/product_level_form.php:256
+#: admin/view/product_level_form.php:328
+msgid "Title:"
+msgstr "Titel:"
+
+#: admin/class-eo-product-addons-admin.php:438
+#: admin/class-eo-product-addons-admin.php:1123 admin/view/global_form.php:66
+#: admin/view/product_level_form.php:38
+msgid "Input Type:"
+msgstr "Input Type:"
+
+#: admin/class-eo-product-addons-admin.php:439
+#: admin/class-eo-product-addons-admin.php:1124 admin/view/global_form.php:67
+#: admin/view/product_level_form.php:39
+msgid "Is Required:"
+msgstr ""
+"Is benodigd:\n"
+
+#: admin/class-eo-product-addons-admin.php:448
+#: admin/class-eo-product-addons-admin.php:1133 admin/view/global_form.php:76
+#: admin/view/product_level_form.php:48
+msgid "-- Please select --"
+msgstr ""
+"-- Selecteer alstublieft --\n"
+
+#: admin/class-eo-product-addons-admin.php:450
+#: admin/class-eo-product-addons-admin.php:1135 admin/view/global_form.php:78
+#: admin/view/product_level_form.php:50
+msgid "Field"
+msgstr "Veld"
+
+#: admin/class-eo-product-addons-admin.php:451
+#: admin/class-eo-product-addons-admin.php:1136 admin/view/global_form.php:79
+#: admin/view/product_level_form.php:51
+msgid "Area"
+msgstr ""
+"Gebied\n"
+
+#: admin/class-eo-product-addons-admin.php:454
+#: admin/class-eo-product-addons-admin.php:1139 admin/view/global_form.php:82
+#: admin/view/product_level_form.php:54
+msgid "File"
+msgstr ""
+"het dossier\n"
+
+#: admin/class-eo-product-addons-admin.php:457
+#: admin/class-eo-product-addons-admin.php:1142 admin/view/global_form.php:85
+#: admin/view/product_level_form.php:57
+msgid "Drop-down"
+msgstr ""
+"Laten vallen\n"
+
+#: admin/class-eo-product-addons-admin.php:458
+#: admin/class-eo-product-addons-admin.php:1143 admin/view/global_form.php:86
+#: admin/view/product_level_form.php:58
+msgid "Radio Buttons"
+msgstr ""
+"Radio knoppen\n"
+
+#: admin/class-eo-product-addons-admin.php:459
+#: admin/class-eo-product-addons-admin.php:1144 admin/view/global_form.php:87
+#: admin/view/product_level_form.php:59
+msgid "Checkbox"
+msgstr "Checkbox"
+
+#: admin/class-eo-product-addons-admin.php:460
+#: admin/class-eo-product-addons-admin.php:1145 admin/view/global_form.php:88
+msgid "Simple Checkbox"
+msgstr "Eenvoudig selectievakje"
+
+#: admin/class-eo-product-addons-admin.php:461
+#: admin/class-eo-product-addons-admin.php:1146 admin/view/global_form.php:89
+#: admin/view/product_level_form.php:60
+msgid "Multiple Select"
+msgstr "Meerdere selecteren"
+
+#: admin/class-eo-product-addons-admin.php:464
+#: admin/class-eo-product-addons-admin.php:1149 admin/view/global_form.php:92
+#: admin/view/product_level_form.php:63
+msgid "Date"
+msgstr "Datum"
+
+#: admin/class-eo-product-addons-admin.php:465
+#: admin/class-eo-product-addons-admin.php:1150 admin/view/global_form.php:93
+#: admin/view/product_level_form.php:64
+msgid "Time"
+msgstr "Tijd"
+
+#: admin/class-eo-product-addons-admin.php:471
+#: admin/class-eo-product-addons-admin.php:1156 admin/view/global_form.php:99
+#: admin/view/product_level_form.php:70
+msgid "Yes"
+msgstr ""
+"Ja\n"
+
+#: admin/class-eo-product-addons-admin.php:472
+#: admin/class-eo-product-addons-admin.php:1157 admin/view/global_form.php:100
+#: admin/view/product_level_form.php:71
+msgid "No"
+msgstr ""
+"Nee\n"
+
+#: admin/class-eo-product-addons-admin.php:487
+#: admin/class-eo-product-addons-admin.php:510
+#: admin/class-eo-product-addons-admin.php:534
+#: admin/class-eo-product-addons-admin.php:558
+#: admin/class-eo-product-addons-admin.php:583
+#: admin/class-eo-product-addons-admin.php:612
+#: admin/class-eo-product-addons-admin.php:642
+#: admin/class-eo-product-addons-admin.php:674
+#: admin/class-eo-product-addons-admin.php:702
+#: admin/class-eo-product-addons-admin.php:723
+#: admin/class-eo-product-addons-admin.php:1172
+#: admin/class-eo-product-addons-admin.php:1195
+#: admin/class-eo-product-addons-admin.php:1219
+#: admin/class-eo-product-addons-admin.php:1245
+#: admin/class-eo-product-addons-admin.php:1270
+#: admin/class-eo-product-addons-admin.php:1299
+#: admin/class-eo-product-addons-admin.php:1329
+#: admin/class-eo-product-addons-admin.php:1360
+#: admin/class-eo-product-addons-admin.php:1388
+#: admin/class-eo-product-addons-admin.php:1409 admin/view/global_form.php:114
+#: admin/view/global_form.php:137 admin/view/global_form.php:164
+#: admin/view/global_form.php:192 admin/view/global_form.php:217
+#: admin/view/global_form.php:268 admin/view/global_form.php:319
+#: admin/view/global_form.php:398 admin/view/global_form.php:475
+#: admin/view/global_form.php:496 admin/view/product_level_form.php:85
+#: admin/view/product_level_form.php:108 admin/view/product_level_form.php:131
+#: admin/view/product_level_form.php:156 admin/view/product_level_form.php:207
+#: admin/view/product_level_form.php:259 admin/view/product_level_form.php:331
+#: admin/view/product_level_form.php:400 admin/view/product_level_form.php:421
+msgid "Price:"
+msgstr "Prijs:"
+
+#: admin/class-eo-product-addons-admin.php:488
+#: admin/class-eo-product-addons-admin.php:511
+#: admin/class-eo-product-addons-admin.php:535
+#: admin/class-eo-product-addons-admin.php:559
+#: admin/class-eo-product-addons-admin.php:584
+#: admin/class-eo-product-addons-admin.php:613
+#: admin/class-eo-product-addons-admin.php:643
+#: admin/class-eo-product-addons-admin.php:675
+#: admin/class-eo-product-addons-admin.php:703
+#: admin/class-eo-product-addons-admin.php:724
+#: admin/class-eo-product-addons-admin.php:1173
+#: admin/class-eo-product-addons-admin.php:1196
+#: admin/class-eo-product-addons-admin.php:1220
+#: admin/class-eo-product-addons-admin.php:1246
+#: admin/class-eo-product-addons-admin.php:1271
+#: admin/class-eo-product-addons-admin.php:1300
+#: admin/class-eo-product-addons-admin.php:1330
+#: admin/class-eo-product-addons-admin.php:1361
+#: admin/class-eo-product-addons-admin.php:1389
+#: admin/class-eo-product-addons-admin.php:1410 admin/view/global_form.php:115
+#: admin/view/global_form.php:138 admin/view/global_form.php:165
+#: admin/view/global_form.php:193 admin/view/global_form.php:218
+#: admin/view/global_form.php:269 admin/view/global_form.php:320
+#: admin/view/global_form.php:399 admin/view/global_form.php:476
+#: admin/view/global_form.php:497 admin/view/product_level_form.php:86
+#: admin/view/product_level_form.php:109 admin/view/product_level_form.php:132
+#: admin/view/product_level_form.php:157 admin/view/product_level_form.php:208
+#: admin/view/product_level_form.php:260 admin/view/product_level_form.php:332
+#: admin/view/product_level_form.php:401 admin/view/product_level_form.php:422
+msgid "Price Type:"
+msgstr "Prijs Type:"
+
+#: admin/class-eo-product-addons-admin.php:489
+#: admin/class-eo-product-addons-admin.php:512
+#: admin/class-eo-product-addons-admin.php:536
+#: admin/class-eo-product-addons-admin.php:1174
+#: admin/class-eo-product-addons-admin.php:1197 admin/view/global_form.php:116
+#: admin/view/global_form.php:139 admin/view/product_level_form.php:87
+#: admin/view/product_level_form.php:110
+msgid "Max Characters:"
+msgstr "Max. Tekens:"
+
+#: admin/class-eo-product-addons-admin.php:497
+#: admin/class-eo-product-addons-admin.php:520
+#: admin/class-eo-product-addons-admin.php:544
+#: admin/class-eo-product-addons-admin.php:568
+#: admin/class-eo-product-addons-admin.php:711
+#: admin/class-eo-product-addons-admin.php:732
+#: admin/class-eo-product-addons-admin.php:764
+#: admin/class-eo-product-addons-admin.php:792
+#: admin/class-eo-product-addons-admin.php:837
+#: admin/class-eo-product-addons-admin.php:882
+#: admin/class-eo-product-addons-admin.php:1182
+#: admin/class-eo-product-addons-admin.php:1205
+#: admin/class-eo-product-addons-admin.php:1230
+#: admin/class-eo-product-addons-admin.php:1255
+#: admin/class-eo-product-addons-admin.php:1397
+#: admin/class-eo-product-addons-admin.php:1418
+#: admin/class-eo-product-addons-admin.php:1451
+#: admin/class-eo-product-addons-admin.php:1479
+#: admin/class-eo-product-addons-admin.php:1523
+#: admin/class-eo-product-addons-admin.php:1568 admin/view/global_form.php:124
+#: admin/view/global_form.php:147 admin/view/global_form.php:175
+#: admin/view/global_form.php:202 admin/view/global_form.php:235
+#: admin/view/global_form.php:285 admin/view/global_form.php:363
+#: admin/view/global_form.php:443 admin/view/global_form.php:484
+#: admin/view/global_form.php:505 admin/view/product_level_form.php:95
+#: admin/view/product_level_form.php:118 admin/view/product_level_form.php:141
+#: admin/view/product_level_form.php:174 admin/view/product_level_form.php:224
+#: admin/view/product_level_form.php:295 admin/view/product_level_form.php:368
+#: admin/view/product_level_form.php:409 admin/view/product_level_form.php:430
+msgid "Fixed"
+msgstr "vast"
+
+#: admin/class-eo-product-addons-admin.php:498
+#: admin/class-eo-product-addons-admin.php:521
+#: admin/class-eo-product-addons-admin.php:545
+#: admin/class-eo-product-addons-admin.php:569
+#: admin/class-eo-product-addons-admin.php:712
+#: admin/class-eo-product-addons-admin.php:733
+#: admin/class-eo-product-addons-admin.php:765
+#: admin/class-eo-product-addons-admin.php:793
+#: admin/class-eo-product-addons-admin.php:838
+#: admin/class-eo-product-addons-admin.php:883
+#: admin/class-eo-product-addons-admin.php:1183
+#: admin/class-eo-product-addons-admin.php:1206
+#: admin/class-eo-product-addons-admin.php:1231
+#: admin/class-eo-product-addons-admin.php:1256
+#: admin/class-eo-product-addons-admin.php:1398
+#: admin/class-eo-product-addons-admin.php:1419
+#: admin/class-eo-product-addons-admin.php:1452
+#: admin/class-eo-product-addons-admin.php:1480
+#: admin/class-eo-product-addons-admin.php:1524
+#: admin/class-eo-product-addons-admin.php:1569 admin/view/global_form.php:125
+#: admin/view/global_form.php:148 admin/view/global_form.php:176
+#: admin/view/global_form.php:203 admin/view/global_form.php:236
+#: admin/view/global_form.php:286 admin/view/global_form.php:364
+#: admin/view/global_form.php:444 admin/view/global_form.php:485
+#: admin/view/global_form.php:506 admin/view/product_level_form.php:96
+#: admin/view/product_level_form.php:119 admin/view/product_level_form.php:142
+#: admin/view/product_level_form.php:175 admin/view/product_level_form.php:225
+#: admin/view/product_level_form.php:296 admin/view/product_level_form.php:369
+#: admin/view/product_level_form.php:410 admin/view/product_level_form.php:431
+msgid "Percent"
+msgstr "procent"
+
+#: admin/class-eo-product-addons-admin.php:560
+#: admin/class-eo-product-addons-admin.php:1247 admin/view/global_form.php:194
+#: admin/view/product_level_form.php:133
+msgid "Allowed Extensions <span>(add with comma(,) separated)</span>:"
+msgstr ""
+"Toegestaan Uitbreidingen <span> (voeg toe met komma's, gescheiden) </ span>:"
+
+#: admin/class-eo-product-addons-admin.php:585
+#: admin/class-eo-product-addons-admin.php:614
+#: admin/class-eo-product-addons-admin.php:644
+#: admin/class-eo-product-addons-admin.php:676
+#: admin/class-eo-product-addons-admin.php:1272
+#: admin/class-eo-product-addons-admin.php:1301
+#: admin/class-eo-product-addons-admin.php:1331
+#: admin/class-eo-product-addons-admin.php:1362 admin/view/global_form.php:219
+#: admin/view/global_form.php:270 admin/view/global_form.php:321
+#: admin/view/global_form.php:400 admin/view/product_level_form.php:158
+#: admin/view/product_level_form.php:209 admin/view/product_level_form.php:261
+#: admin/view/product_level_form.php:333
+msgid "Sort Order:"
+msgstr ""
+"Sorteervolgorde:\n"
+
+#: admin/class-eo-product-addons-admin.php:598
+#: admin/class-eo-product-addons-admin.php:626
+#: admin/class-eo-product-addons-admin.php:657
+#: admin/class-eo-product-addons-admin.php:685
+#: admin/class-eo-product-addons-admin.php:1285
+#: admin/class-eo-product-addons-admin.php:1313
+#: admin/class-eo-product-addons-admin.php:1344
+#: admin/class-eo-product-addons-admin.php:1371 admin/view/global_form.php:254
+#: admin/view/global_form.php:303 admin/view/global_form.php:382
+#: admin/view/global_form.php:462 admin/view/product_level_form.php:193
+#: admin/view/product_level_form.php:242 admin/view/product_level_form.php:314
+#: admin/view/product_level_form.php:387
+msgid "Add New Row"
+msgstr "Voeg nieuwe rij toe"
+
+#: admin/class-eo-product-addons-admin.php:1221 admin/view/global_form.php:166
+msgid "Checkbox Value:"
+msgstr "Voeg nieuwe rij toe"
+
+#: admin/class-eo-product-addons-admin.php:1222 admin/view/global_form.php:167
+msgid "Checkbox Text/Title:"
+msgstr "Checkbox Tekst / Titel:"
+
+#: admin/view/global_form.php:37
+msgid "Custom Options"
+msgstr "Aangepaste opties"
+
+#: admin/view/global_form.php:38 admin/view/global_form.php:525
+msgid "Products"
+msgstr "producten"
+
+#: admin/view/global_form.php:49 admin/view/product_level_form.php:15
+msgid "Add New Option"
+msgstr "Voeg nieuwe optie toe"
+
+#: admin/view/global_form.php:530
+msgid "ID"
+msgstr ""
+"ID kaart\n"
+
+#: admin/view/global_form.php:531
+msgid "Image"
+msgstr "Beeld"
+
+#: admin/view/global_form.php:532
+msgid "Name"
+msgstr ""
+"Naam\n"
+
+#: admin/view/global_form.php:533
+msgid "Slug"
+msgstr "Naaktslak"
+
+#: admin/view/global_form.php:534
+msgid "Price"
+msgstr "Prijs"
+
+#: admin/view/global_form.php:588
+msgid "No record found"
+msgstr ""
+"Geen record gevonden\n"
+
+#: admin/view/global_form.php:598
+msgid "Save Options"
+msgstr "Opties opslaan"
+
+#: admin/view/support.php:3
+msgid "Welcome to Extendons Support – We are here to help"
+msgstr "Welkom bij Extendons Support - We zijn er om te helpen"
+
+#: admin/view/support.php:5
+msgid ""
+"Our customer support team is powered with enthusiasm to serve you the best "
+"in solving a technical issue or answering your queries in time. If you have "
+"got a question, please do not hesitate to ask us in this easy to fill form, "
+"and we assure you a prompt reply."
+msgstr ""
+"Ons klantenservice team heeft veel enthousiasme om u het beste te helpen bij "
+"het oplossen van een technisch probleem of uw vragen tijdig te beantwoorden. "
+"Als u een vraag hebt, aarzel dan niet om ons te vragen in dit makkelijk "
+"formulier en wij verzekeren u snel een antwoord."
+
+#: admin/view/support.php:42
+msgid "Extendon Active Plugin"
+msgstr "Extendon Active Plugin"
+
+#: admin/view/support.php:43
+msgid "Version"
+msgstr "Versie"
+
+#: admin/view/support.php:44
+msgid "Company"
+msgstr ""
+"Bedrijf\n"
+
+#: admin/view/support.php:61
+msgid "Visit plugin homepage"
+msgstr "Ga naar de startpagina van de plugin"
+
+#: admin/view/support.php:74
+#, php-format
+msgid "by %s"
+msgstr "door %s"
+
+#: admin/view/support.php:89
+msgid "Contact Extendon Support Team"
+msgstr "Neem contact op met Extendon Support Team"
+
+#: admin/view/support.php:91
+msgid "Your message has been successfully sent. We will contact you very soon!"
+msgstr ""
+"Uw bericht is succesvol verzonden. Wij zullen u binnenkort contact met u "
+"opnemen!"
+
+#: admin/view/support.php:97
+msgid "First Name"
+msgstr "Voornaam"
+
+#: admin/view/support.php:99
+msgid "Last Name"
+msgstr ""
+"Achternaam\n"
+
+#: admin/view/support.php:104
+msgid "Your Email"
+msgstr ""
+"Jouw email\n"
+
+#: admin/view/support.php:114
+msgid "Select Plugin"
+msgstr "Selecteer invoegtoepassing"
+
+#: admin/view/support.php:121
+msgid "Message"
+msgstr "Bericht"
+
+#: admin/view/support.php:126
+msgid "Send Request"
+msgstr ""
+"Verzend verzoek\n"
+
+#: front/view/product_custom_options.php:765
+msgid "Options Total:"
+msgstr "Opties Totaal:"
+
+#: front/view/product_custom_options.php:771
+msgid "Final Total:"
+msgstr "Totaal definitief:"
+
+#: extendons-product-addons.php:80
+msgid "WooCommerce Product Addons"
+msgstr "WooCommerce Product Addons"
+
+#: extendons-product-addons.php:85
+msgid "First Name:"
+msgstr ""
+"Voornaam:\n"
+
+#: extendons-product-addons.php:89
+msgid "Last Name:"
+msgstr ""
+"Achternaam:\n"

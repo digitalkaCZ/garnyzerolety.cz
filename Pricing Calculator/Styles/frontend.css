@@ -1,0 +1,33 @@
+div#pc_ranges_table table.table tbody tr td {
+    text-align: center !important;
+}
+div#pc_ranges_table table.table thead tr th {
+    text-align: center !important;
+}
+span.pc-from-torange{
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #5f4e4e;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+table#pc_product_type_table tbody tr td {
+    border: none;
+}
+input.form-control.pc_calculator_item_input {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+td.price_calculation, td.price_calculation input {
+    text-align: center;
+}
+table#variable_product_table tbody tr td {
+    width: 50%;
+    border:none;
+}
