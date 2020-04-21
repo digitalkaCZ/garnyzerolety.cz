@@ -99,12 +99,15 @@ class EXTENDONS_PRICE_CALCULATOR_MAIN {
             if(isset($_POST['condition']) && $_POST['condition'] == "weight_base_condition") {
                 
                 $quantiti_weight = (float) $_POST['quantity'];
-                
                 $product_id = $_POST['weight_product_id'];
 
                 $ranges_table = get_post_meta($product_id, '_pc_product_price_ranges', true);
                 $minimum_price = get_post_meta($product_id, '_pc_minimum_price', true);
                 $table_Check=  get_post_meta($product_id, '_checkbox_cal', true);
+				
+				if ($minimum_price === '') {
+					$minimum_price = 0;
+				}
 
                 $flag = 0;
                 if($table_Check == 'yes'){
@@ -160,7 +163,7 @@ class EXTENDONS_PRICE_CALCULATOR_MAIN {
                        echo $pc_price;
                     
                     } else {
-                    
+
                        echo $pc_price = $quantiti_weight * $minimum_price;
                     
                     }

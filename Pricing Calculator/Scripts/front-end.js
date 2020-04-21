@@ -7,7 +7,7 @@ checkConfiguratorRequiredFieldsAreValid = function() {
         var max = jQuery('#maximum').val();
         var current = jQuery('#pc_quantity_needed').val();
 
-        if (parseInt(min) < parseInt(current) && parseInt(max) > parseInt(current)) {
+        if (parseInt(min) <= parseInt(current) && parseInt(max) >= parseInt(current)) {
         } else {
             isValid = false;
         }
