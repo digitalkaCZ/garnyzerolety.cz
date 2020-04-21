@@ -2605,6 +2605,20 @@ function changeSRC(picsrc) {
 	jQuery('.flex-active-slide a').attr('href', nsrc);
 }
 
+
+jQuery('.eocustomgroup').on('change', function(){
+    setTimeout(function() {
+        jQuery.each(jQuery(".eocustomgroup"), function(){
+            if (jQuery(this).is(":hidden")) {
+                // console.log(jQuery(this).find(':input')
+                //     .not(':button, :submit, :reset, :hidden'));
+
+                jQuery(this).find('input[type="radio"], input[type="checkbox"]').removeAttr('checked');
+            }
+        });
+    }, 200);
+});
+
 </script>
 
 <script>

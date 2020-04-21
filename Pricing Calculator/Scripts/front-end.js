@@ -64,7 +64,6 @@ checkConfiguratorRequiredFieldsAreValid = function() {
         });
     }
 
-    console.log('checkConfiguratorRequiredFieldsAreValid: '+isValid);
     return isValid;
 };
 
@@ -89,14 +88,12 @@ checkConfiguratorRequiredFieldsAreValidOnFormChange = function() {
     var product_options_fields = jQuery(':input[name^="product_options"]');
     if (product_options_fields.length > 0) {
          product_options_fields.on('change paste keyup', function (event) {
-             console.log('run runRequiredFieldsChecker by product_options_fields');
              makeDelay(250)(runRequiredFieldsChecker);
         });
     }
     var calculator_fields = jQuery('#pc_product_type_table :input[type="text"]');
     if (calculator_fields.length > 0) {
         calculator_fields.on('change paste keyup', function (event) {
-            console.log('run runRequiredFieldsChecker by calculator_fields');
             makeDelay(250)(runRequiredFieldsChecker);
         });
     }

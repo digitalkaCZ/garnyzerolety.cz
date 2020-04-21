@@ -962,7 +962,7 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
         wp_enqueue_script('jquery');    
 
         wp_enqueue_style('pc_frontend-css', plugins_url( 'Styles/frontend.css', __FILE__ ), false, '1.0.0' );
-        wp_enqueue_script( 'pc-frontend-js', plugins_url( 'Scripts/front-end.js', __FILE__ ), false, '1.5.1' );
+        wp_enqueue_script( 'pc-frontend-js', plugins_url( 'Scripts/front-end.js', __FILE__ ), false, '1.5.2' );
 
         wp_localize_script( 'pc-frontend-js', 'pc_var_arguments', array(
                 'woopb_nonce' => wp_create_nonce('woopb_nonce'),

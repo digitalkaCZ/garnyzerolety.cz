@@ -98,7 +98,7 @@ class EXTENDONS_PRICE_CALCULATOR_MAIN {
             
             if(isset($_POST['condition']) && $_POST['condition'] == "weight_base_condition") {
                 
-                $quantiti_weight = $_POST['quantity'];
+                $quantiti_weight = (float) $_POST['quantity'];
                 
                 $product_id = $_POST['weight_product_id'];
 
