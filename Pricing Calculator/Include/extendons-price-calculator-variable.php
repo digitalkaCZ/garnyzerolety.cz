@@ -36,26 +36,26 @@ class EXTENDONS_PRICE_CALCULATOR_VARIABLE_SUPPORT {
             if(isset($mearurement_type) && $mearurement_type !='none') {
 
                 // simple products
-                $cart_item_data[ 'pcv_product_type' ] = $_REQUEST['pcv_product_type'];
-                $cart_item_data[ 'pcv_quantity_needed' ] = $_REQUEST['pcv_quantity_needed'];
+                $cart_item_data[ 'pcv_product_type' ] = self::getNumericValue($_REQUEST['pcv_product_type']);
+                $cart_item_data[ 'pcv_quantity_needed' ] = self::getNumericValue($_REQUEST['pcv_quantity_needed']);
 
                 // area length into width
                 if(isset($_REQUEST['vlength_qty_area']) && $_REQUEST['vlength_qty_area'] !=''){
-                    $cart_item_data[ 'vlength_measurement' ] = $_REQUEST['vlength_qty_area'];
+                    $cart_item_data[ 'vlength_measurement' ] = self::getNumericValue($_REQUEST['vlength_qty_area']);
                 }
                 if(isset($_REQUEST['vwidth_qty_area']) && $_REQUEST['vwidth_qty_area'] !=''){
-                    $cart_item_data[ 'vwidth_measurement' ] = $_REQUEST['vwidth_qty_area'];
+                    $cart_item_data[ 'vwidth_measurement' ] = self::getNumericValue($_REQUEST['vwidth_qty_area']);
                 }
 
                 // for volume advanced
                 if(isset($_REQUEST['vlength_qty_vol']) && $_REQUEST['vlength_qty_vol'] !=''){
-                    $cart_item_data[ 'vvlength_measurement' ] = $_REQUEST['vlength_qty_vol'];
+                    $cart_item_data[ 'vvlength_measurement' ] = self::getNumericValue($_REQUEST['vlength_qty_vol']);
                 }
                 if(isset($_REQUEST['vwidth_qty_vol']) && $_REQUEST['vwidth_qty_vol'] !=''){
-                    $cart_item_data[ 'vvwidth_measurement' ] = $_REQUEST['vwidth_qty_vol'];
+                    $cart_item_data[ 'vvwidth_measurement' ] = self::getNumericValue($_REQUEST['vwidth_qty_vol']);
                 }
                 if(isset($_REQUEST['vheight_qty_vol']) && $_REQUEST['vheight_qty_vol'] !=''){
-                    $cart_item_data[ 'vvheight_measurement' ] = $_REQUEST['vheight_qty_vol'];
+                    $cart_item_data[ 'vvheight_measurement' ] = self::getNumericValue($_REQUEST['vheight_qty_vol']);
                 }
 
                 return $cart_item_data;
@@ -281,7 +281,7 @@ class EXTENDONS_PRICE_CALCULATOR_VARIABLE_SUPPORT {
 
         // variation id
         if(isset($_REQUEST['variation_id']) && $_REQUEST['variation_id'] !=''){
-            $variation_id = $_REQUEST['variation_id'];
+            $variation_id = self::getNumericValue($_REQUEST['variation_id']);
         }
         
         $variation_obj = new WC_Product_variation($variation_id);
@@ -593,6 +593,11 @@ class EXTENDONS_PRICE_CALCULATOR_VARIABLE_SUPPORT {
             )
         );
 
-    }   
+    }
+
+    public static function getNumericValue($value) {
+        $value = str_replace(',', '.', trim($value));
+        return $value ? $value : null;
+    }
 
 } new EXTENDONS_PRICE_CALCULATOR_VARIABLE_SUPPORT();

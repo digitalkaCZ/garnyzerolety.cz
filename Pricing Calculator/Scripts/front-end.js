@@ -64,7 +64,6 @@ checkConfiguratorRequiredFieldsAreValid = function() {
         });
     }
 
-    console.log('checkConfiguratorRequiredFieldsAreValid: '+isValid);
     return isValid;
 };
 
@@ -89,14 +88,12 @@ checkConfiguratorRequiredFieldsAreValidOnFormChange = function() {
     var product_options_fields = jQuery(':input[name^="product_options"]');
     if (product_options_fields.length > 0) {
          product_options_fields.on('change paste keyup', function (event) {
-             console.log('run runRequiredFieldsChecker by product_options_fields');
              makeDelay(250)(runRequiredFieldsChecker);
         });
     }
     var calculator_fields = jQuery('#pc_product_type_table :input[type="text"]');
     if (calculator_fields.length > 0) {
         calculator_fields.on('change paste keyup', function (event) {
-            console.log('run runRequiredFieldsChecker by calculator_fields');
             makeDelay(250)(runRequiredFieldsChecker);
         });
     }
@@ -142,9 +139,11 @@ optionPriceExists = function() {
 
 updateFinalTotalPrice = function() {
     var final_total = 0;
+    var pc_calculated_price = null;
+    var base_product_price = null;
     if (finalTotalPriceExists() && optionPriceExists()) {
-        var pc_calculated_price = getPcCalculatedPrice();
-        var base_product_price = getBaseProductPrice();
+        pc_calculated_price = getPcCalculatedPrice();
+        base_product_price = getBaseProductPrice();
         var options_price = getOptionPrice();
         final_total = parseFloat(base_product_price) + parseFloat(options_price) + parseFloat(pc_calculated_price);
     }
@@ -231,6 +230,10 @@ updateFinalTotalPrice = function() {
 };
 
 jQuery(function () {
+    jQuery("#length_qty_max, #width_qty_max, #pc_quantity_needed").on('keyup keydown keypress', function(){
+        replace_comma_with_dot(jQuery(this));
+    });
+
     jQuery("#calculate").on('click',function (event) {
         var min= jQuery('#minimum').val();
         var max= jQuery('#maximum').val();
@@ -245,7 +248,7 @@ jQuery(function () {
 
         // if first enter period prevent and empty the textbox
         // if(jQuery(this).val() == '.'){
-        //    jQuery(this).val('');  
+        //    jQuery(this).val('');
         // }
 
         // // only allow one period at a time
@@ -261,19 +264,19 @@ jQuery(function () {
         // else get the value and pass it to function for calculation
         var value = jQuery('#pc_quantity_needed').val();
         jQuery('#ext_amount').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');
-        
+
         // call the calculation function
         simple_measurement_calculation_callback(value.replace(",", "."));
-         
+
     });
 });
 
 // ajax call for calculation
-function simple_measurement_calculation_callback(quantity) { 
+function simple_measurement_calculation_callback(quantity) {
     var weight_product_id = jQuery("#pc_against_postid").val();
-    var condition = 'weight_base_condition'; 
+    var condition = 'weight_base_condition';
     jQuery.ajax({
-        url:  pc_var_arguments.ajax_url, 
+        url:  pc_var_arguments.ajax_url,
         type : 'post',
         dataType: 'json',
         data : {
@@ -289,8 +292,8 @@ function simple_measurement_calculation_callback(quantity) {
             /*var price_form = pc_var_arguments.curr_pos;
             var op_price = "";
             if(price_form == 'left') {
-                
-                op_price = accounting.formatMoney(response, { 
+
+                op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
                     format: "%s%v" },
 
@@ -298,48 +301,48 @@ function simple_measurement_calculation_callback(quantity) {
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             } else if(price_form == 'left_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%s %v" }, 
+                    format: "%s %v" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v%s" }, 
+                    format: "%v%s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v %s" }, 
+                    format: "%v %s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             }
 
             // attached with id
             jQuery('#ext_amount').html(op_price.replace(".", ","));*/
         }
-    }); 
-};
+    });
+}
 
 
 // ---------------------------------------
-// --------------- - - - Area box by tiles 
+// --------------- - - - Area box by tiles
 // ---------------------------------------
 jQuery(function () {
     jQuery("#length_qty, #width_qty").on('input keydown change keypress',function (event) {
@@ -347,12 +350,12 @@ jQuery(function () {
         // disabled the input if its boxtype product
         jQuery(".qty").prop('disabled', true);
         // getting the area with length and width
-        var area_length = document.getElementById('length_qty').value;    
+        var area_length = document.getElementById('length_qty').value;
         var area_width = document.getElementById('width_qty').value;
 
         // if first enter period prevent and empty the textbox
         if(jQuery(this).val() == '.'){
-           jQuery(this).val('');  
+           jQuery(this).val('');
         }
 
         // only allow one period at a time
@@ -369,15 +372,15 @@ jQuery(function () {
         var box_required_are = area_length * area_width;
         // total box area
         var total_area = document.getElementById('_ext_box_area').value;
-        
+
         // calcualting the number of box required
         if( box_required_are < total_area ) {
             box_required_are = total_area;
         } else if (box_required_are > total_area) {
             var reminder = box_required_are/total_area;
-            rminde = reminder.toString().split(".")[0]; 
+            rminde = reminder.toString().split(".")[0];
             var once = total_area * rminde;
-            box_required_are = +once + +total_area;
+            box_required_are = +once + total_area;
             box_required_are = box_required_are.toFixed(2);
         }
         // get the totla box numbers
@@ -412,52 +415,52 @@ function get_item_quantity_box(quantity) {
             /*var price_form = pc_var_arguments.curr_pos;
             var op_price = "";
             if(price_form == 'left') {
-                
-                op_price = accounting.formatMoney(response, { 
+
+                op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%s%v" }, 
+                    format: "%s%v" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             } else if(price_form == 'left_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%s %v" }, 
+                    format: "%s %v" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v%s" }, 
+                    format: "%v%s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v %s" }, 
+                    format: "%v %s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             }
 
             // // attached with id
             jQuery('#ext_amount').html(response);*/
         }
-    });  
-    
+    });
+
 }
 
 
@@ -468,12 +471,12 @@ function get_item_quantity_box(quantity) {
 jQuery(function () {
     jQuery("#calculatee").on('click',function (event) {
         // getting the area with length and width
-        var area_length = document.getElementById('length_qty_area').value.replace(",", ".");    
+        var area_length = document.getElementById('length_qty_area').value.replace(",", ".");
         var area_width = document.getElementById('width_qty_area').value.replace(",", ".");
 
        // if first enter period prevent and empty the textbox
         // if(jQuery(this).val() == '.'){
-        //    jQuery(this).val('');  
+        //    jQuery(this).val('');
         // }
 
         // // only allow one period at a time
@@ -500,7 +503,7 @@ jQuery(function () {
         jQuery('#pc_quantity_needed').attr('value',total_area);
         var quantity = jQuery("#pc_quantity_needed").val();
         jQuery('#ext_amount').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');
-        get_item_quantity(quantity); 
+        get_item_quantity(quantity);
 
 
     });
@@ -526,51 +529,51 @@ function get_item_quantity(quantity) {
             /*var price_form = pc_var_arguments.curr_pos;
             var op_price = "";
             if(price_form == 'left') {
-                
-                op_price = accounting.formatMoney(response, { 
+
+                op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%s%v" }, 
+                    format: "%s%v" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             } else if(price_form == 'left_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%s %v" }, 
+                    format: "%s %v" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v%s" }, 
+                    format: "%v%s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
 
             } else if(price_form == 'right_space') {
-                
+
                 op_price = accounting.formatMoney(response, {
                     symbol: "Kč",
-                    format: "%v %s" }, 
+                    format: "%v %s" },
                         pc_var_arguments.pc_decimal,
                         pc_var_arguments.pc_thou_sep,
                         pc_var_arguments.pc_decimal_sep
                 ); // €4.999,99
-            
+
             }
             // attached with id
             jQuery('#ext_amount').html(op_price);*/
         }
-    });  
-    
+    });
+
 }
 
 
@@ -579,14 +582,14 @@ function get_item_quantity(quantity) {
 // ---------------------------------------
 jQuery(function () {
     jQuery("#length_qty_wall, #width_qty_wall").on('input keydown change keypress',function (event) {
-        
+
         // getting the area with length and width
-        var wall_length = document.getElementById('length_qty_wall').value;    
+        var wall_length = document.getElementById('length_qty_wall').value;
         var wall_width = document.getElementById('width_qty_wall').value;
 
         // if first enter period prevent and empty the textbox
         if(jQuery(this).val() == '.'){
-           jQuery(this).val('');  
+           jQuery(this).val('');
         }
 
         // only allow one period at a time
@@ -684,13 +687,13 @@ jQuery(function () {
     jQuery("#length_qty_vol, #width_qty_vol, #height_qty_vol").on('input keydown change keypress',function (event) {
 
         // getting the area with length and width
-        var length_voladv = document.getElementById('length_qty_vol').value;    
+        var length_voladv = document.getElementById('length_qty_vol').value;
         var width_voladv = document.getElementById('width_qty_vol').value;
         var height_voladv = document.getElementById('height_qty_vol').value;
 
         // if first enter period prevent and empty the textbox
         if(jQuery(this).val() == '.'){
-           jQuery(this).val('');  
+           jQuery(this).val('');
         }
 
         // only allow one period at a time
@@ -826,10 +829,6 @@ jQuery(function () {
         jQuery('#ext_amount').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');
         get_item_quantity_max_lw(quantity);
     });
-});
-
-jQuery("#length_qty_max, #width_qty_max").on('keyup keydown keypress', function(){
-    replace_comma_with_dot(jQuery(this));
 });
 
 function replace_comma_with_dot(element) {

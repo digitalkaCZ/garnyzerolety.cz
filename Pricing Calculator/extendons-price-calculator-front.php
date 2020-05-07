@@ -87,9 +87,9 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
     */
     public function add_cart_item($cart_items) {
 
-        $prduct_id = $cart_items['product_id'];
+        $product_id = $cart_items['product_id'];
 
-        $_product = wc_get_product( $prduct_id );
+        $_product = wc_get_product( $product_id );
 
         if('price_calculator' == $_product->get_type()) {
 
@@ -122,8 +122,8 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
             if(isset($cart_items['pc_product_type']) && $cart_items['pc_product_type'] == 'pc_boxtiles_product') {
 
                 // getting the product information if its box tile
-                $box_area = get_post_meta($prduct_id, '_ext_boxtiles_totalarea_covered', true);
-                $per_sqft = get_post_meta($prduct_id, '_ext_boxtiles_persqft', true);
+                $box_area = get_post_meta($product_id, '_ext_boxtiles_totalarea_covered', true);
+                $per_sqft = get_post_meta($product_id, '_ext_boxtiles_persqft', true);
 
                 // calculating the box price
                 $totalBoxPrice = $box_area * $per_sqft;
@@ -137,8 +137,8 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
 
             $product_quantity_required = $cart_items['pc_quantity_needed'];
 
-            $ranges_table = get_post_meta($prduct_id, '_pc_product_price_ranges', true);
-            $minimum_price = get_post_meta($prduct_id, '_pc_minimum_price', true);
+            $ranges_table = get_post_meta($product_id, '_pc_product_price_ranges', true);
+            $minimum_price = get_post_meta($product_id, '_pc_minimum_price', true);
             $table_Check=  get_post_meta($product_id, '_checkbox_cal', true);
 
                 $flag = 0;
@@ -251,48 +251,48 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
 
         if('price_calculator' == $_product->get_type()) {
 
-            $cart_item_data[ 'pc_product_type' ] = $_REQUEST['pc_product_type'];
-            $cart_item_data[ 'pc_quantity_needed' ] = $_REQUEST['pc_quantity_needed'];
+            $cart_item_data[ 'pc_product_type' ] = self::getNumericValue($_REQUEST['pc_product_type']);
+            $cart_item_data[ 'pc_quantity_needed' ] = self::getNumericValue($_REQUEST['pc_quantity_needed']);
 
             // (7.2.2020)
 //            $cart_item_data['pc_max_lw_price'] = (isset($_REQUEST['pc_max_lw_price']) ? $_REQUEST['pc_max_lw_price'] : null);
 
             // (7.2.2020)
-            $cart_item_data['pc_calculated_price'] = (isset($_REQUEST['pc_calculated_price']) ? $_REQUEST['pc_calculated_price'] : null);
+            $cart_item_data['pc_calculated_price'] = (isset($_REQUEST['pc_calculated_price']) ? self::getNumericValue($_REQUEST['pc_calculated_price']) : null);
 
             // for max length & width
             if(isset($_REQUEST['length_qty_max']) && $_REQUEST['length_qty_max'] !=''){
-                $cart_item_data[ 'max_length_measurement' ] = $_REQUEST['length_qty_max'];
+                $cart_item_data[ 'max_length_measurement' ] = self::getNumericValue($_REQUEST['length_qty_max']);
             }
             if(isset($_REQUEST['width_qty_max']) && $_REQUEST['width_qty_max'] !=''){
-                $cart_item_data[ 'max_width_measurement' ] = $_REQUEST['width_qty_max'];
+                $cart_item_data[ 'max_width_measurement' ] = self::getNumericValue($_REQUEST['width_qty_max']);
             }
 
             // for area length into width
             if(isset($_REQUEST['length_qty_area']) && $_REQUEST['length_qty_area'] !=''){
-                $cart_item_data[ 'length_measurement' ] = $_REQUEST['length_qty_area'];
+                $cart_item_data[ 'length_measurement' ] = self::getNumericValue($_REQUEST['length_qty_area']);
             }
             if(isset($_REQUEST['width_qty_area']) && $_REQUEST['width_qty_area'] !=''){
-                $cart_item_data[ 'width_measurement' ] = $_REQUEST['width_qty_area'];
+                $cart_item_data[ 'width_measurement' ] = self::getNumericValue($_REQUEST['width_qty_area']);
             }
 
             // for roomwalls
             if(isset($_REQUEST['length_qty_wall']) && $_REQUEST['length_qty_wall'] !=''){
-                $cart_item_data[ 'wlength_measurement' ] = $_REQUEST['length_qty_wall'];
+                $cart_item_data[ 'wlength_measurement' ] = self::getNumericValue($_REQUEST['length_qty_wall']);
             }
             if(isset($_REQUEST['width_qty_wall']) && $_REQUEST['width_qty_wall'] !=''){
-                $cart_item_data[ 'wwidth_measurement' ] = $_REQUEST['width_qty_wall'];
+                $cart_item_data[ 'wwidth_measurement' ] = self::getNumericValue($_REQUEST['width_qty_wall']);
             }
 
             // for volume advanced
             if(isset($_REQUEST['length_qty_vol']) && $_REQUEST['length_qty_vol'] !=''){
-                $cart_item_data[ 'vlength_measurement' ] = $_REQUEST['length_qty_vol'];
+                $cart_item_data[ 'vlength_measurement' ] = self::getNumericValue($_REQUEST['length_qty_vol']);
             }
             if(isset($_REQUEST['width_qty_vol']) && $_REQUEST['width_qty_vol'] !=''){
-                $cart_item_data[ 'vwidth_measurement' ] = $_REQUEST['width_qty_vol'];
+                $cart_item_data[ 'vwidth_measurement' ] = self::getNumericValue($_REQUEST['width_qty_vol']);
             }
             if(isset($_REQUEST['height_qty_vol']) && $_REQUEST['height_qty_vol'] !=''){
-                $cart_item_data[ 'vheight_measurement' ] = $_REQUEST['height_qty_vol'];
+                $cart_item_data[ 'vheight_measurement' ] = self::getNumericValue($_REQUEST['height_qty_vol']);
             }
 
             $cart_item_data['unique_key'] = md5( microtime().rand() );
@@ -962,7 +962,7 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
         wp_enqueue_script('jquery');    
 
         wp_enqueue_style('pc_frontend-css', plugins_url( 'Styles/frontend.css', __FILE__ ), false, '1.0.0' );
-        wp_enqueue_script( 'pc-frontend-js', plugins_url( 'Scripts/front-end.js', __FILE__ ), false, '1.5.1' );
+        wp_enqueue_script( 'pc-frontend-js', plugins_url( 'Scripts/front-end.js', __FILE__ ), false, '1.5.9' );
 
         wp_localize_script( 'pc-frontend-js', 'pc_var_arguments', array(
                 'woopb_nonce' => wp_create_nonce('woopb_nonce'),
@@ -993,9 +993,11 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
             $min_value = get_post_meta($product_id, '_pc_minimum_quantity', true);
             $max_value = get_post_meta($product_id, '_pc_maximum_quantity', true);
 
+            $pc_quantity_needed = self::getNumericValue($_REQUEST['pc_quantity_needed']);
+
             if(!empty($min_value) && !empty($max_value)) {
             
-                if($_REQUEST['pc_quantity_needed'] < $min_value || $_REQUEST['pc_quantity_needed'] > $max_value) {
+                if($pc_quantity_needed < $min_value || $pc_quantity_needed > $max_value) {
 
                     wc_add_notice( __( 'Allowed quatity must between '.$min_value.' and '.$max_value, 'extendons-price-calculator' ), 'error' );
                 
@@ -1006,7 +1008,7 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
             
             } else if(isset($min_value) && !empty($min_value)) {
 
-                if($_REQUEST['pc_quantity_needed'] < $min_value) {
+                if($pc_quantity_needed < $min_value) {
 
                     wc_add_notice( __( 'You should buy minimum '.$min_value.' quantity!', 'extendons-price-calculator' ), 'error' );
                 
@@ -1017,7 +1019,7 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
 
             } else if(isset($max_value) && !empty($max_value)) {
 
-                 if($_REQUEST['pc_quantity_needed'] > $max_value) {
+                 if($pc_quantity_needed > $max_value) {
 
                     wc_add_notice( __( 'Maximum quantity should not be greater then '.$max_value, 'extendons-price-calculator' ), 'error' );
                 
@@ -1081,9 +1083,9 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
          
         global $product;
          
-        $prduct_id = $product->get_id();
+        $product_id = $product->get_id();
 
-        $_product = wc_get_product( $prduct_id );
+        $_product = wc_get_product( $product_id );
 
         if('price_calculator' == $_product->get_type()) {
          
@@ -1091,8 +1093,8 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
                 
             if(isset($measurement_type) && $measurement_type == "boxtiles") {
                 
-                $box_area = get_post_meta($prduct_id, '_ext_boxtiles_totalarea_covered', true);
-                $per_sqft = get_post_meta($prduct_id, '_ext_boxtiles_persqft', true);
+                $box_area = get_post_meta($product_id, '_ext_boxtiles_totalarea_covered', true);
+                $per_sqft = get_post_meta($product_id, '_ext_boxtiles_persqft', true);
 
                 $sale_item_price = wc_price($box_area * $per_sqft);
 
@@ -1100,7 +1102,7 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
 
             } else {
 
-                $price_ranges = get_post_meta($prduct_id, '_pc_product_price_ranges', true);
+                $price_ranges = get_post_meta($product_id, '_pc_product_price_ranges', true);
 
                 $something = 0;
                 
@@ -1267,6 +1269,10 @@ class EXTENDONS_PRICE_CALCULATOR_FRONT extends EXTENDONS_PRICE_CALCULATOR_MAIN {
         return $quantity;
     }
 
+    public static function getNumericValue($value) {
+        $value = str_replace(',', '.', trim($value));
+        return $value ? $value : null;
+    }
 
 // FRONT CLASS PRICE CALCULATOR
 } new EXTENDONS_PRICE_CALCULATOR_FRONT();

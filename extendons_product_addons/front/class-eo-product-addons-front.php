@@ -10,7 +10,7 @@ if ( !class_exists( 'EO_Product_Addons_Front' ) ) {
 
 		public function __construct() {
 
-			add_action('init', array($this, 'track_front_loading'));
+            // add_action('init', array($this, 'track_front_loading'));
 			add_action( 'wp_loaded', array( $this, 'front_scripts' ) );
 
 			//Show Options on single product page
@@ -139,12 +139,12 @@ if ( !class_exists( 'EO_Product_Addons_Front' ) ) {
 			}
 		}
 
-		public function track_front_loading() {
-			if(!get_option('fields_loaded'))
-				add_option('fields_loaded', '0');
-			else
-				update_option('fields_loaded', '0');
-		}
+		// public function track_front_loading() {
+            // if(!get_option('fields_loaded'))
+            // 	add_option('fields_loaded', '0');
+            // else
+            // 	update_option('fields_loaded', '0');
+		// }
 
         function ProductCustomOptions() {
 
@@ -156,10 +156,10 @@ if ( !class_exists( 'EO_Product_Addons_Front' ) ) {
 
             // if()get_option( 'active_plugins' ) )
 
-        	if(get_option('fields_loaded') === '1')
-        		return;
-        	else
-        		update_option('fields_loaded', '1');
+            // if(get_option('fields_loaded') === '1')
+            // 	return;
+            // else
+            // 	update_option('fields_loaded', '1');
         	require  EOPA_PLUGIN_DIR . 'front/view/product_custom_options.php';
         }
 

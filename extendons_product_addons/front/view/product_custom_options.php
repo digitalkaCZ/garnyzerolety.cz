@@ -5,13 +5,13 @@
 	$default_zoom = get_option('eopa_default_zoom');
 
 	$json = file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBYOdotYH-_VsNoj-Uh37qVx5tVM6rpnI4');
-	
+
 	$obj = json_decode($json);
 	$fontNames = array();
 	foreach($obj->items as $item) {
 		array_push($fontNames, $item->family);
 	}
-	 
+
 	require_once EOPA_PLUGIN_DIR . 'front/class-eo-product-addons-front.php';
 	$custom_options = new EO_Product_Addons_Front();
 
@@ -32,9 +32,9 @@
 <div class="custom_options">
 	<!-- Product Options Start-->
 
-<?php 
-if($ProductOptions!='') { 
-	foreach ($ProductOptions as $global_option) { 
+<?php
+if($ProductOptions!='') {
+	foreach ($ProductOptions as $global_option) {
 		$dependencies_data[$global_option->id] = array(
 			'showif' => $global_option->showif,
 			'cfield' => $global_option->cfield,
@@ -43,20 +43,20 @@ if($ProductOptions!='') {
 			// 'option_field_type' => $global_option->option_field_type
 			);
 
-		
-		$c_field = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->eopa_poptions_table." WHERE id = %d", $global_option->cfield)); 
-		
+
+		$c_field = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->eopa_poptions_table." WHERE id = %d", $global_option->cfield));
+
 		$dependencies_data[$global_option->id]['option_field_type'] = $c_field->option_field_type;
 
 		if($c_field->option_field_type == 'checkbox') {
-			
+
 			$RowOptions = $this->getRowOptions($c_field->id);
 			$dependencies_data[$global_option->id]['rows'] = array();
-			foreach($RowOptions as $option_row) { 
+			foreach($RowOptions as $option_row) {
 				array_push($dependencies_data[$global_option->id]['rows'], $option_row->option_row_title);
 			}
 		} else if($c_field->option_field_type == 'radio' || $c_field->option_field_type == 'simple_radio') {
-			
+
 			$dependencies_data[$global_option->id]['option_field_type'] = $c_field->option_field_type;
 			$dependencies_data[$global_option->id]['option_title'] = $c_field->option_title;
 		}
@@ -72,11 +72,11 @@ if($ProductOptions!='') {
 		$single = array('field', 'area', 'color');
 
 		if(array_search($global_option->option_field_type, $multiple) !== FALSE) {
-			
+
 			if($global_option->manage_stock == 'yes') {
 				$RowOptions = $this->getRowOptions($global_option->id);
-				
-				foreach($RowOptions as $option_row) { 
+
+				foreach($RowOptions as $option_row) {
 
 					if($option_row->stock > 0) {
 						$stock_status = true;
@@ -86,7 +86,7 @@ if($ProductOptions!='') {
 			} else {
 				$stock_status = true;
 			}
-				
+
 		} else if($global_option->option_field_type == 'file') {
 			$stock_status = true;
 		} else {
@@ -97,10 +97,10 @@ if($ProductOptions!='') {
 		}
 ?>
 
-	<div class="eocustomgroup" id="field<?php echo $global_option->id?>_wrapper">	
+	<div class="eocustomgroup" id="field<?php echo $global_option->id?>_wrapper">
 <?php if($stock_status) { ?>
 		<label>
-			<?php echo $global_option->option_title; ?> 
+			<?php echo $global_option->option_title; ?>
 			<?php if($global_option->option_is_required == 'yes') { ?>
 				<span class="required">*</span>
 			<?php } ?>
@@ -123,11 +123,11 @@ if($ProductOptions!='') {
 						}
 
 					?>
-					
+
 					)</span>
 				<?php } else { ?>
 					<span class="price">(
-					<?php 
+					<?php
 
 
 						echo wc_price($global_option->option_price, array(
@@ -164,17 +164,17 @@ if($ProductOptions!='') {
 			<input type="checkbox" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop eoinput" value="<?php echo $global_option->option_maxchars; ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>" /> <?php echo $global_option->option_title; ?>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'date') { ?> 
+		<?php } else if($global_option->option_field_type == 'date') { ?>
 
 			<input data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop datepick eoinput" type="text" maxlength="<?php echo $global_option->option_maxchars; ?>" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>">
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'time') { ?> 
+		<?php } else if($global_option->option_field_type == 'time') { ?>
 
 			<input data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop timepick" type="text" maxlength="<?php echo $global_option->option_maxchars; ?>" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>">
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'color') { ?> 
+		<?php } else if($global_option->option_field_type == 'color') { ?>
 
 			<input type="text" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop colorpick" id="field<?php echo $global_option->id?>" />
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
@@ -191,22 +191,22 @@ if($ProductOptions!='') {
 					        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
 					        "rgb(204, 204, 204)", "rgb(217, 217, 217)","rgb(255, 255, 255)"],
 					        ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
-					        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"], 
-					        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", 
-					        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", 
-					        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", 
-					        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)", 
-					        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)", 
+					        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+					        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+					        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+					        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+					        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+					        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
 					        "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
 					        "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
 					        "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
-					        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", 
+					        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
 					        "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
 				    	]
 				});
 			</script>
 
-		<?php } else if($global_option->option_field_type == 'google_font') { ?> 
+		<?php } else if($global_option->option_field_type == 'google_font') { ?>
 
 			<select name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]"  id="field<?php echo $global_option->id?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop fontpick">
 				<option value="">Select Font</option>
@@ -217,51 +217,51 @@ if($ProductOptions!='') {
 			</select>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'google_map') { ?> 
+		<?php } else if($global_option->option_field_type == 'google_map') { ?>
 
 			<input type="hidden" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" id="field<?php echo $global_option->id?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop mappick" />
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-			
+
 			<div id="map" style="height: 300px;width: 100%;"></div>
 
 			<script>
 				var map, defaultZoom = parseInt('<?php echo $default_zoom;?>');
 				var fieldId = 'field<?php echo $global_option->id?>';
-		        function initMap() {                            
-		            var latitude = parseFloat('<?php echo $default_lat?>'); 
-		            var longitude = parseFloat('<?php echo $default_long?>'); 
-		            
+		        function initMap() {
+		            var latitude = parseFloat('<?php echo $default_lat?>');
+		            var longitude = parseFloat('<?php echo $default_long?>');
+
 		            var defaultLoc = {lat: latitude, lng: longitude};
-		            
+
 		            map = new google.maps.Map(document.getElementById('map'), {
 		              center: defaultLoc,
 		              zoom: defaultZoom,
-		              disableDoubleClickZoom: true 
+		              disableDoubleClickZoom: true
 		            });
-		                  
+
 		            var marker = new google.maps.Marker({
 		              position: defaultLoc,
 		              map: map,
 		              draggable: true,
-		              title: latitude + ', ' + longitude 
-		            });   
+		              title: latitude + ', ' + longitude
+		            });
 
-		            marker.addListener('drag', function(event) {            
+		            marker.addListener('drag', function(event) {
 		              	document.getElementById(fieldId).value = event.latLng.lat().toFixed(7) + ', ' + event.latLng.lng().toFixed(7);
-		              	if (typeof yourFunctionName == 'function') { 
+		              	if (typeof yourFunctionName == 'function') {
 			              	mapCoordsChanged(event.latLng.lat().toFixed(7) + ', ' + event.latLng.lng().toFixed(7));
 			            }
 		            });
 		        }
 			</script>
-		<?php } else if($global_option->option_field_type == 'range_picker') { ?> 
+		<?php } else if($global_option->option_field_type == 'range_picker') { ?>
 
 			<span class="range_picker_min_value"><?php echo $global_option->min_value?></span>
 			<input type="range" id="field<?php echo $global_option->id?>" min="<?php echo $global_option->min_value?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop rangepick" max="<?php echo $global_option->max_value?>"  value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" />
 			<span class="range_picker_max_value"><?php echo $global_option->max_value?></span>
 			<span id="range<?php echo $global_option->id?>" class="range_val"></span>
-			
+
 			<input type="hidden" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" id="range_picker<?php echo $global_option->id?>" />
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
@@ -269,26 +269,26 @@ if($ProductOptions!='') {
 				document.getElementById('field<?php echo $global_option->id?>').addEventListener('change', function(e) {
 					document.getElementById('range_picker<?php echo $global_option->id?>').value = e.target.value;
 					document.getElementById('range<?php echo $global_option->id?>').innerHTML= ' (' + e.target.value + ' )';
-					if (typeof ProductCustomOptions == 'function') { 
+					if (typeof ProductCustomOptions == 'function') {
 		              	// rangeChanged(e.target.value);
 		              	ProductCustomOptions();
 		            }
 				});
 			</script>
 
-		<?php } else if($global_option->option_field_type == 'drop_down') { ?> 
+		<?php } else if($global_option->option_field_type == 'drop_down') { ?>
 
 			<select type="select" class="eoa eoop eoinput" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>">
 				<option value=""><?php echo _e('--- Prosím zvolte možnost ---'); ?></option>
 				<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
-				<?php foreach($RowOptions as $option_row) { 
+				<?php foreach($RowOptions as $option_row) {
 					if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
 					<option <?php selected($val_post,$option_row->option_row_title); ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" value="<?php echo $option_row->option_row_title; ?>">
-					<?php echo $option_row->option_row_title; ?>   
+					<?php echo $option_row->option_row_title; ?>
 					<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 							-  <span class="price">(
-							<?php 
+							<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -303,7 +303,7 @@ if($ProductOptions!='') {
 
 							 ?>)</span>
 						<?php } else { ?>
-							-  <span class="price">(<?php 
+							-  <span class="price">(<?php
 
 
 
@@ -325,14 +325,14 @@ if($ProductOptions!='') {
 			</select>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'multiple') { ?> 
+		<?php } else if($global_option->option_field_type == 'multiple') { ?>
 
 			<select type="mselect" multiple = "multiple" class="fmm eoop eoinput multi" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>"  data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" >
 				<option value=""><?php echo _e('--- Zvolte prosím jednu z možností ').$global_option->option_title; ?> ---</option>
 				<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 				<?php foreach($RowOptions as $option_row) {
 					if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
-					<?php 
+					<?php
 						$title = strtolower(str_replace(' ', '_', $global_option->option_title));
 
 						if(isset($_POST['product_options'][$title]['value']) && $_POST['product_options'][$title]['value']!='') {
@@ -343,12 +343,12 @@ if($ProductOptions!='') {
 
 					?>
 					<option <?php if($val_post2!='') { foreach ($val_post2 as $valp) { selected($valp,$option_row->option_row_title); } } ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" value="<?php echo $option_row->option_row_title; ?>">
-					<?php echo $option_row->option_row_title; ?>   
+					<?php echo $option_row->option_row_title; ?>
 					<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 							-  <span class="price">(
-								
-								<?php 
+
+								<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -365,7 +365,7 @@ if($ProductOptions!='') {
 
 							)</span>
 						<?php } else { ?>
-							-  <span class="price">(<?php 
+							-  <span class="price">(<?php
 
 
 
@@ -388,11 +388,11 @@ if($ProductOptions!='') {
 
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'radio') { ?> 
+		<?php } else if($global_option->option_field_type == 'radio') { ?>
 
 			<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 			<input data-price="0" checked = "true" class="eoop" style="display:none" value="" type="radio" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>" >
-			<?php foreach($RowOptions as $option_row) { 
+			<?php foreach($RowOptions as $option_row) {
 				if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
 				<div class="radio">
 					<span class="rowTitle">
@@ -400,7 +400,7 @@ if($ProductOptions!='') {
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 						<span class="price">(
-						<?php 
+						<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -416,7 +416,7 @@ if($ProductOptions!='') {
 							 ?>)</span>
 						<?php } else { ?>
 						<span class="price">(
-							<?php 
+							<?php
 
 
 
@@ -447,12 +447,12 @@ if($ProductOptions!='') {
 				<?php } } ?>
 
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
-				
+
 		<?php } else if($global_option->option_field_type == 'simple_radio') { ?>
 
 			<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 			<input data-price="0" checked = "true" class="eoop" style="display:none" value="" type="radio" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][]" id="field<?php echo $global_option->id?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>"  >
-			<?php foreach($RowOptions as $option_row) { 
+			<?php foreach($RowOptions as $option_row) {
 				if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
 				<div class="sim_radio_button">
 
@@ -464,7 +464,7 @@ if($ProductOptions!='') {
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 						<span class="price">(
-						<?php 
+						<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -479,7 +479,7 @@ if($ProductOptions!='') {
 							?>
 						)</span>
 						<?php } else { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 								echo wc_price($option_row->option_row_price, array(
 								    'ex_tax_label'       => false,
@@ -494,22 +494,22 @@ if($ProductOptions!='') {
 						<?php } ?>
 						<?php } ?>
 					</span>
-					
-						
-						
-					
+
+
+
+
 				</div>
 				<?php } } ?>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
-				
-		<?php }  else if($global_option->option_field_type == 'checkbox') { ?> 
+
+		<?php }  else if($global_option->option_field_type == 'checkbox') { ?>
 
 			<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 			<input data-price="0" checked = "true" class="eoop" style="display:none" value="" type="checkbox" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][]" id="field<?php echo $global_option->id?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" >
-			<?php foreach($RowOptions as $option_row) { 
+			<?php foreach($RowOptions as $option_row) {
 				if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
 
-				<?php 
+				<?php
 					$title = strtolower(str_replace(' ', '_', $global_option->option_title));
 
 					if(isset($_POST['product_options'][$title]['value']) && $_POST['product_options'][$title]['value']!='') {
@@ -521,11 +521,11 @@ if($ProductOptions!='') {
 				?>
 
 				<div class="checkbox">
-					
+
 					<label>
 						<input <?php if($val_post2!='') { foreach ($val_post2 as $valp) { checked($valp,$option_row->option_row_title); } } ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" class="eoop" value="<?php echo $option_row->option_row_title; ?>" type="checkbox" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]">
 						<?php if($option_row->option_image == '') { ?>
-							
+
 						<?php } else { ?>
 							<img onClick="changeimage('<?php echo $option_row->option_pro_image; ?>')" src="<?php echo $option_row->option_image; ?>" width="75" alt="<?php echo $option_row->option_row_title; ?>" class="img-thumbnail" />
 						<?php } ?>
@@ -534,7 +534,7 @@ if($ProductOptions!='') {
 						<?php echo $option_row->option_row_title; ?>
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
 								    'ex_tax_label'       => false,
 								    'currency'           => '',
@@ -546,7 +546,7 @@ if($ProductOptions!='') {
 
 							 ?>)</span>
 						<?php } else { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 
 
@@ -574,21 +574,21 @@ if($ProductOptions!='') {
 				<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
 		<?php } ?>
-		
+
 	</div>
 	<?php } } ?>
 	<?php } ?>
 
 	<!-- Product Options End-->
-		
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key;?>&callback=initMap"></script>
 
-<?php 
+<?php
 	$i = 1000;
 	foreach($dependencies_data as $option_id => $option_dependency) {
 
 		if($option_dependency['showif'] != '') {
-			if($option_dependency['showif'] == 'Hide') { 
+			if($option_dependency['showif'] == 'Hide') {
 				if($option_dependency['ccondition'] == 'is equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
@@ -596,7 +596,7 @@ if($ProductOptions!='') {
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -612,24 +612,24 @@ if($ProductOptions!='') {
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
 						</script>
 <?php				} else if($option_dependency['option_field_type'] == 'multiple') { ?>
 						<script type="text/javascript">
-					  		
+
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').show();
 					  		jQuery('#field<?php echo $option_dependency["cfield"];?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
 					  			if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 
@@ -640,7 +640,7 @@ if($ProductOptions!='') {
 						<script>
 							var conditionValue = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == conditionValue) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -660,20 +660,20 @@ if($ProductOptions!='') {
 				    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 				    				},
 				    				onEnable: function() {
-				    					
+
 				    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 				    				}
 				    			});
 						</script>
 <?php 				}
-				} else if($option_dependency['ccondition'] == 'is not equal to') { 
+				} else if($option_dependency['ccondition'] == 'is not equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -684,13 +684,13 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -699,7 +699,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
@@ -707,7 +707,7 @@ if($ProductOptions!='') {
 							    if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -717,7 +717,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() != checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -760,17 +760,17 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
 						</script>
 <?php				} else if($option_dependency['option_field_type'] == 'google_map') { ?>
-						
+
 						<script>
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							function mapCoordsChanged(val) {
-								
+
 								if(val != '') {
 									jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 		    						jQuery('#field<?php echo $option_id;?>_wrapper').hide();
@@ -784,11 +784,11 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 							jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-								
+
 					  			if(jQuery(this).val().length !== 0 && jQuery(this).val()[0] !== '') {
 					  				jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  				jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							    }
@@ -805,7 +805,7 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
@@ -820,17 +820,17 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
 						</script>
 <?php 				} else if($option_dependency['option_field_type'] == 'radio' || $option_dependency['option_field_type'] == 'simple_radio') { ?>
 						<script>
-							
+
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked')) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -854,8 +854,8 @@ if($ProductOptions!='') {
 			    				}
 			    			});
 						</script>
-<?php				} 			
-				} else if($option_dependency['ccondition'] == 'is checked') { 
+<?php				}
+				} else if($option_dependency['ccondition'] == 'is checked') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
@@ -874,7 +874,7 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -883,7 +883,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 			    			var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -893,10 +893,10 @@ if($ProductOptions!='') {
 			    				}
 			    			});
 						</script>
-<?php 				} 
+<?php 				}
 				}
 /**************** Show ******************/
-			} else { 
+			} else {
 
 				if($option_dependency['ccondition'] == 'is equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
@@ -905,7 +905,7 @@ if($ProductOptions!='') {
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -921,7 +921,7 @@ if($ProductOptions!='') {
 				    			});
 								}
 							});javascript:void(0);
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -930,14 +930,14 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
-					  			
+
 							    if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -947,7 +947,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -972,14 +972,14 @@ if($ProductOptions!='') {
 				    			});
 						</script>
 <?php 				} ?>
-<?php			} else if($option_dependency['ccondition'] == 'is not equal to') { 
+<?php			} else if($option_dependency['ccondition'] == 'is not equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -995,7 +995,7 @@ if($ProductOptions!='') {
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -1004,7 +1004,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
@@ -1012,7 +1012,7 @@ if($ProductOptions!='') {
 							    if(jQuery(values).not(selectVals).get().length !== 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -1022,7 +1022,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() != checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -1047,7 +1047,7 @@ if($ProductOptions!='') {
 				    			});
 						</script>
 <?php				}
-				} else if($option_dependency['ccondition'] == 'is not empty') { 
+				} else if($option_dependency['ccondition'] == 'is not empty') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
@@ -1056,7 +1056,7 @@ if($ProductOptions!='') {
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							jQuery('input[type="checkbox"]').each(function() {
 								if(jQuery(this).val() != '') {
-									
+
 									jQuery(this).on('change', function() {
 										var res = jQuery('input[type="checkbox"]:checked').filter(function(index) {
 											return jQuery(this).val() != '';
@@ -1072,7 +1072,7 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -1109,11 +1109,11 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-								
+
 					  			if(jQuery(this).val().length !== 0 && jQuery(this).val()[0] !== '') {
 					  				jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					  				jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -1124,11 +1124,11 @@ if($ProductOptions!='') {
 						<script>
 
 				    		jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
-				    		
+
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') === true) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -1139,11 +1139,11 @@ if($ProductOptions!='') {
 			    			});
 						</script>
 <?php 				} else if($option_dependency['option_field_type'] == 'google_map') { ?>
-						
+
 						<script>
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							function mapCoordsChanged(val) {
-								
+
 								if(val != '') {
 									jQuery('#field<?php echo $option_id;?>_phfield').val('');
 		    						jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -1163,22 +1163,22 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
 						</script>
-<?php				} ?>					
-<?php			} else if($option_dependency['ccondition'] == 'is checked') { 
+<?php				} ?>
+<?php			} else if($option_dependency['ccondition'] == 'is checked') {
 
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
-						
+
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -1189,13 +1189,13 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -1206,7 +1206,7 @@ if($ProductOptions!='') {
 			    			var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 
 			    			jQuery("input[name='product_options[<?php echo strtolower($option_dependency["option_title"])?>][value]']").on('change', function(){
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -1216,7 +1216,7 @@ if($ProductOptions!='') {
 			    				}
 			    			});
 						</script>
-<?php 				} 
+<?php 				}
 			 	}
 			}
 		}
@@ -1225,20 +1225,20 @@ if($ProductOptions!='') {
 
 
 	<!-- Global Option Start-->
-	<?php 
+	<?php
 
 	$is_exclude = get_post_meta ( $post->ID, '_exclude_global_options', true );
-	
+
 	$GlobalOptions = array();
 	foreach($GlobalRules as $gRule) {
 
 		if($gRule->applied_on == 'products') {
-			
+
 			$proudctIDs = explode(', ', $gRule->proids);
 
 
 			if(in_array($post->ID, $proudctIDs)) {
-				
+
 				if($is_exclude!='yes') {
 					$GlobalOptions[] = $custom_options->getGlobalOptions($gRule->rule_id);
 				} else {
@@ -1253,7 +1253,7 @@ if($ProductOptions!='') {
 
 
 		    if(in_array($post->ID, $categoryproIDs)) {
-				
+
 				if($is_exclude!='yes') {
 					$GlobalOptions[] = $custom_options->getGlobalOptions($gRule->rule_id);
 				} else {
@@ -1267,10 +1267,10 @@ if($ProductOptions!='') {
 	if($GlobalOptions!=0) {
 
 	foreach ($GlobalOptions as $global_options) {?>
-		<?php 
+		<?php
 
 		foreach ($global_options as $global_option) {
-			
+
 			$global_dependencies_data[$global_option->id] = array(
 			'showif' => $global_option->showif,
 			'cfield' => $global_option->cfield,
@@ -1278,21 +1278,21 @@ if($ProductOptions!='') {
 			'ccondition_value' => $global_option->ccondition_value
 			);
 
-			
-			$c_field = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->eopa_poptions_table." WHERE id = %d", $global_option->cfield)); 
-			
+
+			$c_field = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->eopa_poptions_table." WHERE id = %d", $global_option->cfield));
+
 			$global_dependencies_data[$global_option->id]['option_field_type'] = $c_field->option_field_type;
-			
+
 			$stock_status = false;
 			$multiple = array('drop_down', 'radio', 'simple_radio', 'checkbox', 'multiple');
 			$single = array('field', 'area');
 
 			if(array_search($global_option->option_field_type, $multiple) !== FALSE) {
-				
+
 				if($global_option->manage_stock == 'yes') {
 					$RowOptions = $this->getRowOptions($global_option->id);
-					
-					foreach($RowOptions as $option_row) { 
+
+					foreach($RowOptions as $option_row) {
 
 						if($option_row->stock > 0) {
 							$stock_status = true;
@@ -1302,7 +1302,7 @@ if($ProductOptions!='') {
 					}
 				}else if($global_option->manage_stock == 'no')
 					$stock_status = true;
-					
+
 			} else {
 				if($global_option->manage_stock == 'yes' && $global_option->stock > 0)
 					$stock_status = true;
@@ -1311,20 +1311,20 @@ if($ProductOptions!='') {
 			}
 
 			if($c_field->option_field_type == 'checkbox') {
-				
+
 				$RowOptions = $this->getRowOptions($c_field->id);
 				$global_dependencies_data[$global_option->id]['rows'] = array();
-				foreach($RowOptions as $option_row) { 
+				foreach($RowOptions as $option_row) {
 					array_push($global_dependencies_data[$global_option->id]['rows'], $option_row->option_row_title);
 				}
 			} else if($c_field->option_field_type == 'radio' || $c_field->option_field_type == 'simple_radio') {
-				
+
 				$result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->eopa_poptions_table." WHERE id = %d", $global_option->cfield));
 
 				$global_dependencies_data[$global_option->id]['option_field_type'] = $c_field->option_field_type;
 				$global_dependencies_data[$global_option->id]['option_title'] = $result->option_title;
 			}
-			
+
 			$title = strtolower(str_replace(' ', '_', $global_option->option_title));
 			if(isset($_POST['product_options'][$title]['value']) && $_POST['product_options'][$title]['value']!='') {
 				$val_post = $_POST['product_options'][$title]['value'];
@@ -1333,10 +1333,10 @@ if($ProductOptions!='') {
 			}
 	?>
 
-	<div class="eocustomgroup" id="field<?php echo $global_option->id?>_wrapper">	
+	<div class="eocustomgroup" id="field<?php echo $global_option->id?>_wrapper">
 <?php if($stock_status) { ?>
 		<label>
-			<?php echo $global_option->option_title; ?> 
+			<?php echo $global_option->option_title; ?>
 			<?php if($global_option->option_is_required == 'yes') { ?>
 				<span class="required">*</span>
 			<?php } ?>
@@ -1362,7 +1362,7 @@ if($ProductOptions!='') {
 					</span>
 				<?php } else { ?>
 					<span class="price">(
-					<?php 
+					<?php
 
 
 						echo wc_price($global_option->option_price, array(
@@ -1380,7 +1380,7 @@ if($ProductOptions!='') {
 
 
 					 ?>
-					
+
 					)</span>
 				<?php } ?>
 			<?php } ?>
@@ -1398,15 +1398,15 @@ if($ProductOptions!='') {
 			<input type="checkbox" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop eocheck" value="<?php echo $global_option->option_maxchars; ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]"  id="field<?php echo $global_option->id?>"/> <?php echo $global_option->option_allowed_file_extensions; ?>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'date') { ?> 
+		<?php } else if($global_option->option_field_type == 'date') { ?>
 			<input data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop datepick eoinput" type="text" maxlength="<?php echo $global_option->option_maxchars; ?>" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>">
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'time') { ?> 
+		<?php } else if($global_option->option_field_type == 'time') { ?>
 			<input data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop timepick eoinput" type="text" maxlength="<?php echo $global_option->option_maxchars; ?>" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>">
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'color') { ?> 
+		<?php } else if($global_option->option_field_type == 'color') { ?>
 
 			<input type="text" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" id="field<?php echo $global_option->id?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop" />
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
@@ -1423,22 +1423,22 @@ if($ProductOptions!='') {
 					        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
 					        "rgb(204, 204, 204)", "rgb(217, 217, 217)","rgb(255, 255, 255)"],
 					        ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
-					        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"], 
-					        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", 
-					        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", 
-					        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", 
-					        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)", 
-					        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)", 
+					        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+					        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+					        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+					        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+					        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+					        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
 					        "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
 					        "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
 					        "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
-					        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", 
+					        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
 					        "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
 				    	]
 				});
 			</script>
 
-		<?php } else if($global_option->option_field_type == 'google_font') { ?> 
+		<?php } else if($global_option->option_field_type == 'google_font') { ?>
 
 			<select name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]"  id="field<?php echo $global_option->id?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop" >
 				<option value="">Select Font</option>
@@ -1449,45 +1449,45 @@ if($ProductOptions!='') {
 			</select>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'google_map') { ?> 
+		<?php } else if($global_option->option_field_type == 'google_map') { ?>
 
 			<input type="hidden" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" id="field<?php echo $global_option->id?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop" />
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-			
+
 			<div id="map" style="height: 300px;width: 100%;"></div>
 
 			<script>
 				var map, defaultZoom = parseInt('<?php echo $default_zoom;?>');
 				var fieldId = 'field<?php echo $global_option->id?>';
-		        function initMap() {                            
-		            var latitude = parseFloat('<?php echo $default_lat?>'); 
-		            var longitude = parseFloat('<?php echo $default_long?>'); 
-		            
+		        function initMap() {
+		            var latitude = parseFloat('<?php echo $default_lat?>');
+		            var longitude = parseFloat('<?php echo $default_long?>');
+
 		            var defaultLoc = {lat: latitude, lng: longitude};
-		            
+
 		            map = new google.maps.Map(document.getElementById('map'), {
 		              center: defaultLoc,
 		              zoom: defaultZoom,
-		              disableDoubleClickZoom: true 
+		              disableDoubleClickZoom: true
 		            });
-		                  
+
 		            var marker = new google.maps.Marker({
 		              position: defaultLoc,
 		              map: map,
 		              draggable: true,
-		              title: latitude + ', ' + longitude 
-		            });   
+		              title: latitude + ', ' + longitude
+		            });
 
-		            marker.addListener('drag', function(event) {            
+		            marker.addListener('drag', function(event) {
 		              	document.getElementById(fieldId).value = event.latLng.lat().toFixed(7) + ', ' + event.latLng.lng().toFixed(7);
-		              	if (typeof yourFunctionName == 'function') { 
+		              	if (typeof yourFunctionName == 'function') {
 			              	mapCoordsChanged(event.latLng.lat().toFixed(7) + ', ' + event.latLng.lng().toFixed(7));
 			            }
 		            });
 		        }
 			</script>
-		<?php } else if($global_option->option_field_type == 'range_picker') { ?> 
+		<?php } else if($global_option->option_field_type == 'range_picker') { ?>
 
 			<span class="range_picker_min_value"><?php echo $global_option->min_value?></span>
 			<input type="range" id="field<?php echo $global_option->id?>" min="<?php echo $global_option->min_value?>" data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop rangepick" max="<?php echo $global_option->max_value?>"  value="<?php if( ! empty($val_post) ){ echo $val_post; } ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" />
@@ -1501,26 +1501,26 @@ if($ProductOptions!='') {
 					document.getElementById('range_picker<?php echo $global_option->id?>').value = e.target.value;
 					document.getElementById('range<?php echo $global_option->id?>').innerHTML =' (' + e.target.value + ' )';
 					ProductCustomOptions();
-					if (typeof ProductCustomOptions == 'function') { 
+					if (typeof ProductCustomOptions == 'function') {
 		              	// rangeChanged(e.target.value);
 		              	ProductCustomOptions();
 		            }
 				});
 			</script>
-		<?php } else if($global_option->option_field_type == 'drop_down') { ?> 
+		<?php } else if($global_option->option_field_type == 'drop_down') { ?>
 			<select type="select" class="eoa eoop eoinput" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>">
 				<option value=""><?php echo _e('--- Zvolte prosím jednu z možností ').$global_option->option_title; ?> ---</option>
 				<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
-				<?php foreach($RowOptions as $option_row) { 
+				<?php foreach($RowOptions as $option_row) {
 					if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
 					?>
 
 					<option <?php selected($val_post,$option_row->option_row_title); ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" value="<?php echo $option_row->option_row_title; ?>">
-					<?php echo $option_row->option_row_title; ?>   
+					<?php echo $option_row->option_row_title; ?>
 					<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 							-  <span class="price">(
-							<?php 
+							<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -1537,7 +1537,7 @@ if($ProductOptions!='') {
 							 )</span>
 						<?php } else { ?>
 							-  <span class="price">(
-							<?php 
+							<?php
 
 
 
@@ -1552,7 +1552,7 @@ if($ProductOptions!='') {
 
 
 							?>
-							
+
 							)</span>
 						<?php } ?>
 					<?php } ?>
@@ -1561,14 +1561,14 @@ if($ProductOptions!='') {
 			</select>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'multiple') { ?> 
+		<?php } else if($global_option->option_field_type == 'multiple') { ?>
 			<select type="mselect" multiple = "multiple" class="fmm eoop eoinput multi" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop" >
-			
+
 			<option value=""><?php echo _e('--- Zvolte prosím jednu z možností ').$global_option->option_title; ?> ---</option>
 				<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
-				<?php foreach($RowOptions as $option_row) { 
+				<?php foreach($RowOptions as $option_row) {
 					if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
-					<?php 
+					<?php
 						$title = strtolower(str_replace(' ', '_', $global_option->option_title));
 						if(isset($_POST['product_options'][$title]['value']) && $_POST['product_options'][$title]['value'] !='' ) {
 							$val_post2 = $_POST['product_options'][$title]['value'];
@@ -1578,11 +1578,11 @@ if($ProductOptions!='') {
 
 					?>
 					<option <?php if($val_post2!='') { foreach ($val_post2 as $valp) { selected($valp,$option_row->option_row_title); } } ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" value="<?php echo $option_row->option_row_title; ?>">
-					<?php echo $option_row->option_row_title; ?>   
+					<?php echo $option_row->option_row_title; ?>
 					<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 							-  <span class="price">(
-							<?php 
+							<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -1595,11 +1595,11 @@ if($ProductOptions!='') {
 								) );
 
 							?>
-							
+
 							)</span>
 						<?php } else { ?>
 							-  <span class="price">(
-							<?php 
+							<?php
 
 								echo wc_price($option_row->option_row_price, array(
 								    'ex_tax_label'       => false,
@@ -1618,7 +1618,7 @@ if($ProductOptions!='') {
 			</select>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'radio') { ?> 
+		<?php } else if($global_option->option_field_type == 'radio') { ?>
 			<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 			<input data-price="0" checked = "true" class="eoop" style="display:none" value="" type="radio" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][]" id="field<?php echo $global_option->id?>">
 			<?php foreach($RowOptions as $option_row) {
@@ -1629,7 +1629,7 @@ if($ProductOptions!='') {
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 						<span class="price">(
-						<?php 
+						<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -1644,7 +1644,7 @@ if($ProductOptions!='') {
 							?>
 						)</span>
 						<?php } else { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 								echo wc_price($option_row->option_row_price, array(
 								    'ex_tax_label'       => false,
@@ -1686,7 +1686,7 @@ if($ProductOptions!='') {
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
 						<span class="price">(
-						<?php 
+						<?php
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
 								    'ex_tax_label'       => false,
 								    'currency'           => '',
@@ -1699,7 +1699,7 @@ if($ProductOptions!='') {
 							?>
 						)</span>
 						<?php } else { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 								echo wc_price($option_row->option_row_price, array(
 								    'ex_tax_label'       => false,
@@ -1718,12 +1718,12 @@ if($ProductOptions!='') {
 				<?php } } ?>
 			<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 
-		<?php } else if($global_option->option_field_type == 'checkbox') { ?> 
+		<?php } else if($global_option->option_field_type == 'checkbox') { ?>
 			<?php $RowOptions = $this->getRowOptions($global_option->id) ?>
 			<input data-price="0" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" checked = "true" class="eoop" style="display:none" value="" type="checkbox" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][]" id="field<?php echo $global_option->id?>">
 			<?php foreach($RowOptions as $option_row) {
 				if(($global_option->manage_stock != 'yes') || ($global_option->manage_stock == 'yes' && $option_row->stock > 0) ) { ?>
-			<?php 
+			<?php
 				$title = strtolower(str_replace(' ', '_', $global_option->option_title));
 				if(isset($_POST['product_options'][$title]['value']) && $_POST['product_options'][$title]['value']!='') {
 					$val_post2 = $_POST['product_options'][$title]['value'];
@@ -1732,11 +1732,11 @@ if($ProductOptions!='') {
 				}
 			?>
 				<div class="checkbox">
-					
+
 					<label>
 						<input <?php if($val_post2!='') { foreach ($val_post2 as $valp) { checked($valp,$option_row->option_row_title); } } ?> data-price="<?php if($option_row->option_row_price_type == 'percent') { echo $proprice*$option_row->option_row_price/100; } else { echo $option_row->option_row_price; }  ?>" class="eoop" value="<?php echo $option_row->option_row_title; ?>" type="checkbox" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]">
 						<?php if($option_row->option_image == '') { ?>
-							
+
 						<?php } else { ?>
 							<img onClick="changeimage('<?php echo $option_row->option_pro_image; ?>')" src="<?php echo $option_row->option_image; ?>" width="75" alt="<?php echo $option_row->option_row_title; ?>" class="img-thumbnail" />
 						<?php } ?>
@@ -1745,7 +1745,7 @@ if($ProductOptions!='') {
 						<?php echo $option_row->option_row_title; ?>
 						<?php if($option_row->option_row_price != '') { ?>
 						<?php if($option_row->option_row_price_type == 'percent') { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 
 								echo wc_price($proprice*$option_row->option_row_price/100, array(
@@ -1759,7 +1759,7 @@ if($ProductOptions!='') {
 
 							?>)</span>
 						<?php } else { ?>
-						<span class="price">(<?php 
+						<span class="price">(<?php
 
 								echo wc_price($option_row->option_row_price, array(
 								    'ex_tax_label'       => false,
@@ -1783,21 +1783,21 @@ if($ProductOptions!='') {
 				<input data-price="<?php if($global_option->option_price_type == 'percent') { echo $proprice*$global_option->option_price/100; } else { echo $global_option->option_price; }  ?>" data-multiply="<?php echo $global_option->multiply_price_by_qty;?>" class="eoop" class="eoinput" type="file" value="" name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][value]" id="field<?php echo $global_option->id?>">
 				<input name="product_options[<?php echo strtolower(str_replace(' ', '_', $global_option->option_title)); ?>][phfield]" id="field<?php echo $global_option->id?>_phfield" type="hidden" />
 		<?php } ?>
-		
+
 	</div>
 	<?php }} } ?>
 	<?php } ?>
 	<!-- Global Options End -->
-	<?php 
+	<?php
 	foreach($global_dependencies_data as $option_id => $option_dependency) {
 		if($option_dependency['showif'] != '') {
-			if($option_dependency['showif'] == 'Hide') { 
+			if($option_dependency['showif'] == 'Hide') {
 				if($option_dependency['ccondition'] == 'is equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -1808,30 +1808,30 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
 						</script>
 <?php				} else if($option_dependency['option_field_type'] == 'multiple') { ?>
 						<script type="text/javascript">
-					  		
+
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').show();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
 					  			if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							    }
@@ -1841,7 +1841,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -1866,14 +1866,14 @@ if($ProductOptions!='') {
 				    			});
 						</script>
 <?php 				}
-				} else if($option_dependency['ccondition'] == 'is not equal to') { 
+				} else if($option_dependency['ccondition'] == 'is not equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -1884,13 +1884,13 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -1899,7 +1899,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
@@ -1907,7 +1907,7 @@ if($ProductOptions!='') {
 							    if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -1917,7 +1917,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() != checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -1949,7 +1949,7 @@ if($ProductOptions!='') {
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
 								if(jQuery(this).val() == '<?php echo $option_row_title?>') {
-									
+
 									jQuery(this).on('change', function() {
 										if(jQuery(this).is(':checked')) {
 											jQuery('#field<?php echo $option_id;?>_wrapper').hide();
@@ -1961,7 +1961,7 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -1970,11 +1970,11 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 							jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-								
+
 					  			if(jQuery(this).val().length !== 0 && jQuery(this).val()[0] !== '') {
 					  				jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  				jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
 							    }
@@ -1991,17 +1991,17 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
 						</script>
 <?php 				} else if($option_dependency['option_field_type'] == 'radio' || $option_dependency['option_field_type'] == 'simple_radio') { ?>
 						<script>
-							
+
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked')) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -2021,13 +2021,13 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
 						</script>
-<?php				} 			
-				} else if($option_dependency['ccondition'] == 'is checked') { 
+<?php				}
+				} else if($option_dependency['ccondition'] == 'is checked') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
@@ -2035,7 +2035,7 @@ if($ProductOptions!='') {
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
 								if(jQuery(this).val() == '<?php echo $option_row_title?>') {
-									
+
 									jQuery(this).on('change', function() {
 										if(jQuery(this).is(':checked')) {
 											jQuery('#field<?php echo $option_id;?>_wrapper').hide();
@@ -2047,7 +2047,7 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -2056,7 +2056,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 			    			var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
@@ -2066,19 +2066,19 @@ if($ProductOptions!='') {
 			    				}
 			    			});
 						</script>
-<?php 				} 
+<?php 				}
 				}
 /**************** Show ******************/
 			} else {
 				if($option_dependency['ccondition'] == 'is equal to') { ?>
-				<?php 
+				<?php
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -2089,13 +2089,13 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -2104,14 +2104,14 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
-					  			
+
 							    if(jQuery(values).not(selectVals).get().length === 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -2122,7 +2122,7 @@ if($ProductOptions!='') {
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() == checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -2147,14 +2147,14 @@ if($ProductOptions!='') {
 				    			});
 						</script>
 <?php 				} ?>
-<?php			} else if($option_dependency['ccondition'] == 'is not equal to') { 
+<?php			} else if($option_dependency['ccondition'] == 'is not equal to') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -2165,13 +2165,13 @@ if($ProductOptions!='') {
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 					    				},
 					    				onEnable: function() {
-					    					
+
 					    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					    				}
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -2180,7 +2180,7 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 					  		jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 					  		jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-					  			
+
 					  			var selectVals = jQuery(this).val();
 					  			var values = '<?php echo $option_dependency["ccondition_value"];?>'.split(',');
 
@@ -2188,7 +2188,7 @@ if($ProductOptions!='') {
 							    if(jQuery(values).not(selectVals).get().length !== 0) {
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('');
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -2198,7 +2198,7 @@ if($ProductOptions!='') {
 						<script>
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') && jQuery(this).val() != checkVal) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -2223,7 +2223,7 @@ if($ProductOptions!='') {
 				    			});
 						</script>
 <?php				}
-				} else if($option_dependency['ccondition'] == 'is not empty') { 
+				} else if($option_dependency['ccondition'] == 'is not empty') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
@@ -2232,7 +2232,7 @@ if($ProductOptions!='') {
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							jQuery('input[type="checkbox"]').each(function() {
 								if(jQuery(this).val() != '') {
-									
+
 									jQuery(this).on('change', function() {
 										var res = jQuery('input[type="checkbox"]:checked').filter(function(index) {
 											return jQuery(this).val() != '';
@@ -2248,7 +2248,7 @@ if($ProductOptions!='') {
 									});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -2263,7 +2263,7 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
@@ -2272,11 +2272,11 @@ if($ProductOptions!='') {
 						<script type="text/javascript">
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							jQuery('#field<?php echo $option_dependency["cfield"]?>').on('change', function() {
-								
+
 					  			if(jQuery(this).val().length !== 0 && jQuery(this).val()[0] !== '') {
 					  				jQuery('#field<?php echo $option_id;?>_phfield').val('');
 					  				jQuery('#field<?php echo $option_id;?>_wrapper').show();
-							    } else { 
+							    } else {
 							    	jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							    	jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 							    }
@@ -2289,7 +2289,7 @@ if($ProductOptions!='') {
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 							var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo str_replace(' ', '_',strtolower($option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked') === true) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -2309,20 +2309,20 @@ if($ProductOptions!='') {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('not required');
 			    				},
 			    				onEnable: function() {
-			    					
+
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    				}
 			    			});
 						</script>
-<?php				} ?>					
-<?php			} else if($option_dependency['ccondition'] == 'is checked') { 
+<?php				} ?>
+<?php			} else if($option_dependency['ccondition'] == 'is checked') {
 					if($option_dependency['option_field_type'] == 'checkbox') { ?>
 						<script type="text/javascript">
 <?php
 
 	foreach($option_dependency['rows'] as $option_row_title) { ?>
 							jQuery('input[type="checkbox"]').each(function() {
-								if(jQuery(this).val() == '<?php echo $option_row_title?>' 
+								if(jQuery(this).val() == '<?php echo $option_row_title?>'
 									&& '<?php echo $option_dependency["ccondition_value"];?>' == '<?php echo $option_row_title?>') {
 									jQuery(this).attr('id', '<?php echo "chkbox".$i;?>');
 									jQuery('#field<?php echo $option_id;?>_wrapper').dependsOn({
@@ -2338,7 +2338,7 @@ if($ProductOptions!='') {
 					    			});
 								}
 							});
-<?php 
+<?php
 		$i++;
 	}
 ?>
@@ -2348,7 +2348,7 @@ if($ProductOptions!='') {
 							jQuery('#field<?php echo $option_id;?>_wrapper').hide();
 			    			var checkVal = '<?php echo $option_dependency["ccondition_value"]?>';
 			    			jQuery("input[name='product_options[<?php echo strtolower(str_replace(' ', '_', $option_dependency["option_title"]));?>][value]']").on('change', function() {
-			    				
+
 			    				if(jQuery(this).is(':checked')) {
 			    					jQuery('#field<?php echo $option_id;?>_phfield').val('');
 			    					jQuery('#field<?php echo $option_id;?>_wrapper').show();
@@ -2358,7 +2358,7 @@ if($ProductOptions!='') {
 			    				}
 			    			});
 						</script>
-<?php 				} 
+<?php 				}
 			 	}
 			}
 		}
@@ -2366,20 +2366,20 @@ if($ProductOptions!='') {
 ?>
 </div>
 
-<?php 
-				
+<?php
+
 			$product = wc_get_product( $post->ID );
-				
+
 			if ( is_object( $product ) ) {
-				
+
 				$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-				
+
 				$d_price    = $tax_display_mode == 'incl' ? $product->get_price() : $product->get_price();
-			
+
 			} else {
-				
+
 				$d_price    = '';
-				
+
 			}
 
 ?>
@@ -2388,16 +2388,16 @@ if($ProductOptions!='') {
 </div>
 
 <script type="text/javascript">
-	
+
 	jQuery(document).ready(function() {
 		jQuery(this).on( 'change', 'input:text, select, textarea, input:radio, input:checkbox, input:file, input.qty, input.range_pick', function(e) {
 			ProductCustomOptions('cli');
 		});
 	});
-	
+
 	ProductCustomOptions();
-	function ProductCustomOptions(a) { 
-	
+	function ProductCustomOptions(a) {
+
 		var option_total = 0;
 		var product_price = jQuery('#product_options_total').attr( 'product-price' );
         var calculated_price = getPcCalculatedPrice();
@@ -2411,9 +2411,9 @@ if($ProductOptions!='') {
 			var data_char = 0;
 
 			if(jQuery(this).attr('type') == 'radio') {
-				
+
 				if(jQuery(this).is(':checked')) {
-					
+
 					option_price = jQuery(this).attr('data-price');
 					if(typeof jQuery(this).attr('id') === "undefined" && jQuery(this).data('multiply') == '1') {
 						option_price = option_price * qty;
@@ -2427,12 +2427,12 @@ if($ProductOptions!='') {
 				}
 			} else if(jQuery(this).attr('type') == 'checkbox') {
 				if(jQuery(this).is(':checked') && typeof jQuery(this).attr('id') === 'undefined') {
-					
+
 					option_price = jQuery(this).attr('data-price');
-					
+
 					if(jQuery(this).parents('.checkbox').prevAll('.eoop').length > 0 && jQuery(this).parents('.checkbox').prevAll('.eoop').attr('id') != '') {
 
-							if(jQuery(jQuery(this).parents('.eocustomgroup').find('.eoop')[0]).data('multiply') == '1') 
+							if(jQuery(jQuery(this).parents('.eocustomgroup').find('.eoop')[0]).data('multiply') == '1')
 								option_price = option_price * qty;
 					}
 				}
@@ -2443,7 +2443,7 @@ if($ProductOptions!='') {
 					option_price *= qty;
 
 			} else if(jQuery(this).attr('type') == 'mselect') {
-					
+
 				var sum = option_price;
 			    jQuery( "option:selected", this ).each(function() {
 			      str = parseFloat(jQuery( this ).attr('data-price'));
@@ -2455,7 +2455,7 @@ if($ProductOptions!='') {
 					option_price *= qty;
 
 			} else if(jQuery(this).attr('type') == 'text') {
-				
+
 				data_char = jQuery(this).attr('data-char');
 
 				if(data_char == 1) {
@@ -2497,13 +2497,13 @@ if($ProductOptions!='') {
 				var newprice = 0;
 			else
 				var newprice = option_price;
-			
+
 			var value_entered =  jQuery(this).val();
-			
+
 			if(value_entered != '' && !isNaN(newprice) )
 				option_total = parseFloat( option_total ) + parseFloat( newprice );
 		});
-		
+
 		// if ( option_total > 0 && qty > 0 ) { // (7.2.2020)
 
             // (7.2.2020)
@@ -2525,7 +2525,7 @@ if($ProductOptions!='') {
 
 			var price_form = "<?php echo get_option( 'woocommerce_currency_pos' ); ?>";
 			var op_price = '';
-			
+
 			if(price_form == 'left') {
 				op_price = accounting.formatMoney(option_total, { symbol: "<?php echo $string; ?>",  format: "%s%v" }, "<?php echo wc_get_price_decimals(); ?>", "<?php echo wc_get_price_thousand_separator(); ?>", "<?php echo wc_get_price_decimal_separator(); ?>"); // €4.999,99
 			} else if(price_form == 'left_space') {
@@ -2540,7 +2540,7 @@ if($ProductOptions!='') {
             final_total = parseFloat(option_total) + parseFloat(product_total_price) + parseFloat(calculated_price);
 
 			var fi_price = '';
-			
+
 			if(price_form == 'left') {
 				fi_price = accounting.formatMoney(final_total, { symbol: "<?php echo $string; ?>",  format: "%s%v" }, "<?php echo wc_get_price_decimals(); ?>", "<?php echo wc_get_price_thousand_separator(); ?>", "<?php echo wc_get_price_decimal_separator(); ?>"); // €4.999,99
 			} else if(price_form == 'left_space') {
@@ -2576,7 +2576,7 @@ function changeimage(image) {
     //     jQuery('.single_add_to_cart_button').attr("disabled", "disabled");
     // }
     // setTimeout(checkConfiguratorRequiredFieldsAreValid, 250);
-	
+
     if (image == '') {
         return;
     }
@@ -2604,6 +2604,20 @@ function changeSRC(picsrc) {
 	jQuery('.flex-active-slide img').attr('data-large_image', nsrc);
 	jQuery('.flex-active-slide a').attr('href', nsrc);
 }
+
+
+jQuery('.eocustomgroup').on('change', function(){
+    setTimeout(function() {
+        jQuery.each(jQuery(".eocustomgroup"), function(){
+            if (jQuery(this).is(":hidden")) {
+                // console.log(jQuery(this).find(':input')
+                //     .not(':button, :submit, :reset, :hidden'));
+
+                jQuery(this).find('input[type="radio"], input[type="checkbox"]').removeAttr('checked');
+            }
+        });
+    }, 200);
+});
 
 </script>
 
